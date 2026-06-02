@@ -3,18 +3,19 @@
 
 ---
 
-## シカエル 患者側アプリ モック（`app/`）
+## シカエル 患者側アプリ モック（トップページ ＝ `index.html`）
 
 「トリビューの歯科版＝シカエル」の **患者側アプリのモック画面**（プロトタイプ）。
-医院データは将来 管理側で追加する前提で、現状は**すべてサンプルデータ**で動きます。
+このリポジトリの**トップページ**です。医院データは将来 管理側で追加する前提で、現状は**すべてサンプルデータ**で動きます。
 
 ```
-app/index.html   … アプリ本体（スマホ風・下部タブ＋詳細オーバーレイ）
-app/app.css      … デザイン（白基調 × コーラル × ミント）
-app/app.js       … サンプルデータ・描画・検索・保存・予約フォーム
+index.html   … アプリ本体（スマホ風・下部タブ＋詳細オーバーレイ）
+app.css      … デザイン（白基調 × コーラル × ミント）
+app.js       … サンプルデータ・描画・検索・保存・予約フォーム
 ```
 
-ビルド不要。`app/index.html` を開く（または `python3 -m http.server` 後に `/app/`）。
+ビルド不要。`index.html` を開く（または `python3 -m http.server` 後にトップへ）。
+公開URL：**https://ryo02suzu.github.io/Shikaeru/**
 
 ### 画面
 - **ホーム**：検索／カテゴリ／目的別／人気の症例（Before/After）／注目クリニック／新着
@@ -29,8 +30,8 @@ app/app.js       … サンプルデータ・描画・検索・保存・予約�
 
 ---
 
-## ホワイトニング自費転換ファネル（`index.html`）
-1医院向けの単体LP（縦スクロール）。以下に詳細。
+## ホワイトニング自費転換ファネル（`funnel/`）
+1医院向けの単体LP（縦スクロール）。公開URL：**https://ryo02suzu.github.io/Shikaeru/funnel/** 。以下に詳細。
 
 ---
 
@@ -42,12 +43,12 @@ app/app.js       … サンプルデータ・描画・検索・保存・予約�
 ### 構成
 
 ```
-index.html              … ファネル本体（縦スクロール1ページ）
-assets/css/style.css    … スタイル（高級美容ブランド × 和のエディトリアル）
-assets/js/main.js       … Before/After スライダー・無料診断・スクロール演出
+funnel/index.html       … ファネル本体（縦スクロール1ページ）
+funnel/assets/css/style.css … スタイル（高級美容ブランド × 和のエディトリアル）
+funnel/assets/js/main.js     … Before/After スライダー・無料診断・スクロール演出
 ```
 
-ビルド不要の静的サイト。`index.html` をブラウザで開く、または任意の静的サーバで配信してください。
+ビルド不要の静的サイト。`funnel/index.html` をブラウザで開く、または任意の静的サーバで配信してください。
 
 ```sh
 # 例：簡易サーバで確認
@@ -86,12 +87,12 @@ python3 -m http.server 8000
 
 | 箇所 | 仮の内容 | 差し替え方法 |
 |------|----------|--------------|
-| 医院名・ロゴ | 志白歯科 / SHIRO DENTAL | `index.html` の `.brand`、`<title>`、フッター |
-| 症例写真（Before/After） | CSSの質感表現（実写なし） | `assets/css/style.css` の `.tooth-art--before/after` を実写画像に。**本人同意＋限定解除前提** |
-| 料金 | オフィス ¥22,000 ／ ホーム ¥33,000 ／ デュアル ¥49,500（税込・仮） | `index.html` の `.plans` とフッター「標準的な費用」 |
-| お客様の声 | サンプル3件（仮と明記） | `index.html` の `.voices__grid`。捏造禁止・実感想に差し替え |
+| 医院名・ロゴ | 志白歯科 / SHIRO DENTAL | `funnel/index.html` の `.brand`、`<title>`、フッター |
+| 症例写真（Before/After） | CSSの質感表現（実写なし） | `funnel/assets/css/style.css` の `.tooth-art--before/after` を実写画像に。**本人同意＋限定解除前提** |
+| 料金 | オフィス ¥22,000 ／ ホーム ¥33,000 ／ デュアル ¥49,500（税込・仮） | `funnel/index.html` の `.plans` とフッター「標準的な費用」 |
+| お客様の声 | サンプル3件（仮と明記） | `funnel/index.html` の `.voices__grid`。捏造禁止・実感想に差し替え |
 | LINE予約リンク | `href="#"`（仮） | `data-placeholder="LINE"` の `<a>` の `href` を実URLに |
 | Web予約リンク | `href="#"`（仮） | `data-placeholder="Web"` の `<a>` の `href` を実URLに |
-| 診療時間・所在地・院長名 | 仮テキスト | `index.html` の `.booking__hours`、フッター `.site-footer__base` |
+| 診療時間・所在地・院長名 | 仮テキスト | `funnel/index.html` の `.booking__hours`、フッター `.site-footer__base` |
 
-> 仮の予約ボタンは、`href="#"` のまま押すと「実URLに差し替えてください」というアラートを出します（`assets/js/main.js`）。
+> 仮の予約ボタンは、`href="#"` のまま押すと「実URLに差し替えてください」というアラートを出します（`funnel/assets/js/main.js`）。
