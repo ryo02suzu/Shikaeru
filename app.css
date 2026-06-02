@@ -1,0 +1,401 @@
+/* =====================================================================
+   シカエル（Shikaeru）｜トリビュー歯科版・患者側アプリ モック
+   - スマホアプリ風 UI（下部タブ＋詳細オーバーレイ）
+   - すべてサンプルデータ。医院は後から管理側で追加する前提。
+   配色：清潔感の白基調 × コーラル（美容アクセント）× ミント（信頼・クリーン）
+   ===================================================================== */
+
+:root {
+  --pink:       #f2776b;  /* 主役アクセント（美容医療のやわらかさ） */
+  --pink-deep:  #e2594b;
+  --pink-tint:  #fdeeec;
+  --mint:       #2fbda8;  /* 信頼・クリーンの補助色 */
+  --mint-tint:  #e4f6f2;
+  --ink:        #26242b;  /* 文字 */
+  --ink-soft:   #75717c;  /* 補助文字 */
+  --ink-faint:  #a6a1ad;
+  --bg:         #ffffff;
+  --bg-soft:    #f5f4f7;
+  --bg-sink:    #efedf2;
+  --line:       #eceaf0;
+  --line-2:     #e2dfe7;
+  --star:       #f5b301;
+
+  --mincho: "Shippori Mincho", serif;
+  --gothic: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
+
+  --maxw: 460px;
+  --tab-h: 62px;
+  --r: 16px;
+  --r-sm: 10px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --shadow: 0 10px 30px -16px rgba(38, 36, 43, 0.4);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--gothic);
+  color: var(--ink);
+  background: #d9d6df; /* デスクトップ時のフレーム外背景 */
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; margin: 0; padding: 0; }
+h1, h2, h3, h4 { margin: 0; font-weight: 700; line-height: 1.4; }
+
+/* ============ アプリ枠（デスクトップでは中央のスマホ風） ============ */
+.app {
+  position: relative;
+  width: 100%;
+  max-width: var(--maxw);
+  min-height: 100vh;
+  margin-inline: auto;
+  background: var(--bg);
+  box-shadow: 0 0 60px -10px rgba(0,0,0,0.25);
+  overflow: hidden;
+  padding-bottom: calc(var(--tab-h) + env(safe-area-inset-bottom, 0px));
+}
+
+/* モック注記リボン */
+.mockflag {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--ink); color: #fff;
+  font-size: 0.68rem; letter-spacing: 0.08em;
+  text-align: center; padding: 4px 8px;
+}
+.mockflag b { color: var(--pink); font-weight: 700; }
+
+/* ============ 画面共通 ============ */
+.screen { display: none; animation: fade 0.4s var(--ease); }
+.screen.is-active { display: block; }
+@keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.appbar {
+  position: sticky; top: 0; z-index: 30;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; padding: 12px 16px;
+}
+.appbar__title { font-size: 1.15rem; letter-spacing: 0.04em; }
+.logo {
+  font-family: var(--mincho); font-size: 1.4rem; font-weight: 700;
+  letter-spacing: 0.06em; color: var(--ink);
+}
+.logo b { color: var(--pink); }
+.appbar__icons { display: flex; gap: 4px; }
+.iconbtn {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: grid; place-items: center; color: var(--ink-soft);
+  transition: background 0.2s var(--ease);
+}
+.iconbtn:hover { background: var(--bg-soft); }
+.iconbtn svg { width: 22px; height: 22px; }
+.dot { position: relative; }
+.dot::after { content: ""; position: absolute; top: 8px; right: 9px; width: 7px; height: 7px; border-radius: 50%; background: var(--pink); border: 2px solid #fff; }
+
+.pad { padding: 16px; }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; padding: 18px 16px 10px; }
+.section-head h2 { font-size: 1.05rem; letter-spacing: 0.03em; }
+.section-head .more { font-size: 0.8rem; color: var(--pink); font-weight: 500; }
+
+/* ============ 検索バー ============ */
+.searchbar {
+  display: flex; align-items: center; gap: 8px;
+  margin: 14px 16px 4px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 16px;
+  color: var(--ink-soft);
+}
+.searchbar svg { width: 18px; height: 18px; flex: none; }
+.searchbar input { border: 0; background: none; outline: none; width: 100%; font-size: 0.92rem; color: var(--ink); }
+.searchbar input::placeholder { color: var(--ink-faint); }
+
+/* ============ カテゴリチップ ============ */
+.chips { display: flex; gap: 8px; overflow-x: auto; padding: 12px 16px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex: none; white-space: nowrap;
+  font-size: 0.84rem; font-weight: 500;
+  padding: 8px 16px; border-radius: 999px;
+  background: var(--bg-soft); border: 1px solid var(--line);
+  color: var(--ink); transition: all 0.2s var(--ease);
+}
+.chip.is-on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.chip:hover { border-color: var(--ink-faint); }
+
+/* 目的タイル */
+.goals { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 4px 16px 8px; }
+.goal {
+  text-align: left; padding: 16px; border-radius: var(--r);
+  background: var(--mint-tint); border: 1px solid var(--line);
+  font-weight: 700; font-size: 0.92rem; line-height: 1.4;
+}
+.goal small { display: block; font-weight: 400; font-size: 0.72rem; color: var(--ink-soft); margin-top: 4px; }
+.goal:nth-child(odd) { background: var(--pink-tint); }
+
+/* ============ 症例カード ============ */
+.rail { display: flex; gap: 12px; overflow-x: auto; padding: 6px 16px 8px; scrollbar-width: none; }
+.rail::-webkit-scrollbar { display: none; }
+.rail .case { flex: none; width: 240px; }
+
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 6px 16px 8px; }
+
+.case {
+  background: var(--bg); border: 1px solid var(--line);
+  border-radius: var(--r); overflow: hidden; text-align: left;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  width: 100%;
+}
+.case:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.case__ba { position: relative; aspect-ratio: 16 / 11; display: flex; }
+.case__ba .half { flex: 1; position: relative; }
+.case__ba .half span {
+  position: absolute; top: 8px; font-size: 0.6rem; font-weight: 700;
+  padding: 2px 7px; border-radius: 999px; color: #fff;
+  background: rgba(38,36,43,0.55);
+}
+.case__ba .half.before span { left: 8px; }
+.case__ba .half.after span { right: 8px; background: var(--pink); }
+.case__ba .divider { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; transform: translateX(-50%); }
+.case__save {
+  position: absolute; right: 8px; bottom: 8px;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.92); display: grid; place-items: center;
+  box-shadow: 0 4px 10px -4px rgba(0,0,0,0.4);
+}
+.case__save svg { width: 17px; height: 17px; color: var(--ink-soft); transition: all 0.2s var(--ease); }
+.case__save.is-saved svg { color: var(--pink); fill: var(--pink); }
+.case__body { padding: 10px 12px 12px; }
+.case__treat { font-size: 0.9rem; font-weight: 700; letter-spacing: 0.01em; }
+.case__shade { font-size: 0.72rem; color: var(--mint); font-weight: 700; margin-top: 2px; }
+.case__price { font-size: 0.95rem; font-weight: 700; margin-top: 6px; }
+.case__price small { font-size: 0.66rem; color: var(--ink-soft); font-weight: 400; }
+.case__meta { display: flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 0.72rem; color: var(--ink-soft); }
+.case__meta .tagpin { color: var(--ink-faint); }
+
+/* 画像プレースホルダ（症例・サンプル） */
+.ph { background-size: cover; background-position: center; position: absolute; inset: 0; }
+.ph--ivory   { background: linear-gradient(150deg,#fbf3e6,#efe0c6); }
+.ph--white   { background: linear-gradient(150deg,#ffffff,#f0eee9); }
+.ph--mint    { background: linear-gradient(150deg,#e7f6f2,#cfeae3); }
+.ph--pearl   { background: linear-gradient(150deg,#f7f4f8,#e7e1ec); }
+.ph--coral   { background: linear-gradient(150deg,#fde9e6,#f7cfc8); }
+.ph--slate   { background: linear-gradient(150deg,#eef1f4,#dde3ea); }
+.ph--aqua    { background: linear-gradient(150deg,#e6f4f8,#cfe7ef); }
+.ph__lbl { position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%); font-size: 0.56rem; color: var(--ink-faint); letter-spacing: 0.04em; }
+
+/* ============ クリニックカード ============ */
+.clinic {
+  display: flex; gap: 12px; align-items: center; text-align: left;
+  padding: 12px 16px; border-bottom: 1px solid var(--line); width: 100%;
+}
+.clinic:hover { background: var(--bg-soft); }
+.clinic__thumb { width: 64px; height: 64px; border-radius: 12px; position: relative; flex: none; overflow: hidden; }
+.clinic__info { min-width: 0; flex: 1; }
+.clinic__name { font-size: 0.95rem; font-weight: 700; }
+.clinic__area { font-size: 0.74rem; color: var(--ink-soft); margin-top: 1px; }
+.clinic__tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.tag { font-size: 0.66rem; padding: 2px 8px; border-radius: 999px; background: var(--mint-tint); color: var(--mint); font-weight: 700; }
+.rating { display: inline-flex; align-items: center; gap: 3px; font-size: 0.78rem; font-weight: 700; }
+.rating svg { width: 14px; height: 14px; color: var(--star); fill: var(--star); }
+.rating small { color: var(--ink-soft); font-weight: 400; }
+
+.clinic-card {
+  flex: none; width: 220px; text-align: left;
+  border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: #fff;
+}
+.clinic-card__img { position: relative; aspect-ratio: 16/9; }
+.clinic-card__body { padding: 10px 12px 12px; }
+
+/* ============ さがす：フィルタ ============ */
+.toggle {
+  display: flex; margin: 12px 16px; background: var(--bg-soft);
+  border-radius: 999px; padding: 4px; border: 1px solid var(--line);
+}
+.toggle button { flex: 1; padding: 8px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; color: var(--ink-soft); }
+.toggle button.is-on { background: #fff; color: var(--ink); box-shadow: 0 2px 6px -2px rgba(0,0,0,0.2); }
+
+.filterbar { display: flex; gap: 8px; overflow-x: auto; padding: 4px 16px 12px; scrollbar-width: none; }
+.filterbar::-webkit-scrollbar { display: none; }
+.filterbtn {
+  flex: none; display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.82rem; font-weight: 500; padding: 7px 14px;
+  border: 1px solid var(--line-2); border-radius: 999px; color: var(--ink);
+}
+.filterbtn svg { width: 14px; height: 14px; }
+.filterbtn.is-on { background: var(--pink-tint); border-color: var(--pink); color: var(--pink-deep); }
+
+.result-count { padding: 4px 16px; font-size: 0.78rem; color: var(--ink-soft); }
+
+/* 並び替え・フィルタのシート */
+.sheet-mask { position: fixed; inset: 0; background: rgba(38,36,43,0.4); z-index: 60; opacity: 0; pointer-events: none; transition: opacity 0.3s var(--ease); }
+.sheet-mask.is-open { opacity: 1; pointer-events: auto; }
+.sheet {
+  position: absolute; left: 0; right: 0; bottom: 0; max-width: var(--maxw); margin-inline: auto;
+  background: #fff; border-radius: 20px 20px 0 0; padding: 8px 16px calc(24px + env(safe-area-inset-bottom,0px));
+  transform: translateY(100%); transition: transform 0.32s var(--ease);
+}
+.sheet-mask.is-open .sheet { transform: translateY(0); }
+.sheet__grip { width: 40px; height: 4px; border-radius: 999px; background: var(--line-2); margin: 8px auto 14px; }
+.sheet h3 { font-size: 1rem; margin-bottom: 10px; }
+.sheet .opts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.sheet .opt { padding: 9px 14px; border: 1px solid var(--line-2); border-radius: 999px; font-size: 0.84rem; }
+.sheet .opt.is-on { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+/* ============ 保存・マイページ・予約 ============ */
+.empty { text-align: center; color: var(--ink-soft); padding: 60px 24px; }
+.empty .emo { font-size: 2.4rem; }
+.empty p { margin: 10px 0 0; font-size: 0.9rem; }
+
+.profile { display: flex; align-items: center; gap: 14px; padding: 20px 16px; }
+.avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg,var(--pink),var(--mint)); display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 1.3rem; }
+.profile__name { font-size: 1.05rem; font-weight: 700; }
+.profile__sub { font-size: 0.76rem; color: var(--ink-soft); }
+
+.menu-list { border-top: 8px solid var(--bg-sink); }
+.menu-row { display: flex; align-items: center; gap: 12px; padding: 15px 16px; border-bottom: 1px solid var(--line); width: 100%; text-align: left; font-size: 0.92rem; }
+.menu-row svg.lead { width: 20px; height: 20px; color: var(--ink-soft); }
+.menu-row .chev { margin-left: auto; color: var(--ink-faint); }
+.menu-row:hover { background: var(--bg-soft); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 14px; border-radius: 12px; font-size: 0.95rem; font-weight: 700;
+  letter-spacing: 0.04em; transition: filter 0.2s var(--ease), transform 0.1s var(--ease);
+}
+.btn:active { transform: scale(0.99); }
+.btn--pink { background: var(--pink); color: #fff; }
+.btn--pink:hover { filter: brightness(1.04); }
+.btn--ghost { border: 1px solid var(--line-2); color: var(--ink); }
+.btn--line { background: #06c755; color: #fff; }
+
+/* 予約フォーム */
+.field { padding: 0 16px 16px; }
+.field label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; }
+.field select, .field input, .field textarea {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--line-2); border-radius: 10px;
+  font-family: inherit; font-size: 0.92rem; color: var(--ink); background: #fff;
+}
+.reserve-card {
+  margin: 16px; padding: 16px; border-radius: var(--r);
+  background: linear-gradient(135deg, var(--pink-tint), var(--mint-tint));
+  border: 1px solid var(--line);
+}
+.reserve-card .badge { font-size: 0.68rem; font-weight: 700; color: var(--pink-deep); }
+.reserve-card h3 { font-size: 1rem; margin: 4px 0; }
+.reserve-card p { margin: 0; font-size: 0.82rem; color: var(--ink-soft); }
+
+/* ============ 詳細オーバーレイ ============ */
+.overlay {
+  position: fixed; inset: 0; z-index: 70;
+  max-width: var(--maxw); margin-inline: auto;
+  background: #fff; overflow-y: auto;
+  transform: translateX(100%); transition: transform 0.32s var(--ease);
+  padding-bottom: calc(80px + env(safe-area-inset-bottom,0px));
+}
+.overlay.is-open { transform: translateX(0); }
+.overlay__bar {
+  position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 8px;
+  padding: 12px 12px; background: rgba(255,255,255,0.9); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.overlay__bar .iconbtn:hover { background: var(--bg-soft); }
+.overlay__bar .ttl { font-size: 0.95rem; font-weight: 700; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* 詳細：Before/After スライダー */
+.ba-slider { position: relative; aspect-ratio: 4/3; touch-action: none; user-select: none; cursor: ew-resize; overflow: hidden; }
+.ba-slider .layer { position: absolute; inset: 0; }
+.ba-slider .layer .lbl { position: absolute; bottom: 12px; font-size: 0.72rem; font-weight: 700; color: #fff; padding: 4px 12px; border-radius: 999px; background: rgba(38,36,43,0.6); }
+.ba-slider .layer.before .lbl { left: 12px; }
+.ba-slider .layer.after .lbl { right: 12px; background: var(--pink); }
+.ba-slider .clip { position: absolute; inset: 0; clip-path: inset(0 50% 0 0); }
+.ba-slider .handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; transform: translateX(-50%); pointer-events: none; }
+.ba-slider .handle .grip { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 42px; height: 42px; border-radius: 50%; background: #fff; color: var(--pink); display: grid; place-items: center; box-shadow: 0 6px 16px -4px rgba(0,0,0,0.5); }
+.ba-slider .handle .grip svg { width: 20px; height: 20px; }
+
+.detail-body { padding: 16px; }
+.detail-treat { font-size: 1.25rem; font-weight: 700; }
+.detail-shade { display: inline-block; margin-top: 6px; font-size: 0.8rem; font-weight: 700; color: var(--mint); background: var(--mint-tint); padding: 3px 10px; border-radius: 999px; }
+.detail-price { font-size: 1.5rem; font-weight: 700; margin: 14px 0 2px; }
+.detail-price small { font-size: 0.74rem; color: var(--ink-soft); font-weight: 400; }
+.detail-note { font-size: 0.72rem; color: var(--ink-soft); }
+
+.divline { height: 8px; background: var(--bg-sink); margin: 18px -16px; }
+
+.spec { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 0.86rem; }
+.spec dt { width: 88px; flex: none; color: var(--ink-soft); }
+.spec dd { margin: 0; font-weight: 500; }
+
+/* 限定解除・リスク表示（医療広告ガイドライン対応） */
+.risk {
+  background: #fff8f7; border: 1px solid #f6d9d4; border-radius: 12px;
+  padding: 14px 16px; margin-top: 12px;
+}
+.risk h4 { font-size: 0.84rem; color: var(--pink-deep); margin-bottom: 6px; }
+.risk ul { display: grid; gap: 4px; }
+.risk li { font-size: 0.78rem; color: var(--ink-soft); padding-left: 14px; position: relative; }
+.risk li::before { content: "・"; position: absolute; left: 0; color: var(--pink); }
+
+.review { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.review__top { display: flex; align-items: center; gap: 8px; }
+.review__av { width: 30px; height: 30px; border-radius: 50%; background: var(--bg-sink); display: grid; place-items: center; font-size: 0.8rem; color: var(--ink-soft); }
+.review__name { font-size: 0.82rem; font-weight: 700; }
+.review__date { font-size: 0.7rem; color: var(--ink-faint); margin-left: auto; }
+.review__text { font-size: 0.84rem; margin: 6px 0 0; color: var(--ink); }
+
+/* 詳細下部の固定CTA */
+.detail-cta {
+  position: fixed; bottom: 0; left: 0; right: 0; max-width: var(--maxw); margin-inline: auto; z-index: 6;
+  display: flex; gap: 10px; align-items: center;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-top: 1px solid var(--line);
+}
+.detail-cta .save-lg { width: 48px; height: 48px; flex: none; border-radius: 12px; border: 1px solid var(--line-2); display: grid; place-items: center; }
+.detail-cta .save-lg svg { width: 22px; height: 22px; color: var(--ink-soft); }
+.detail-cta .save-lg.is-saved svg { color: var(--pink); fill: var(--pink); }
+
+/* ============ 下部タブバー ============ */
+.tabbar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+  max-width: var(--maxw); margin-inline: auto;
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  background: rgba(255,255,255,0.96); backdrop-filter: blur(10px);
+  border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.tab {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 9px 0 7px; font-size: 0.62rem; font-weight: 500; color: var(--ink-faint);
+  transition: color 0.2s var(--ease);
+}
+.tab svg { width: 23px; height: 23px; }
+.tab.is-on { color: var(--pink); }
+.tab.is-on svg { stroke: var(--pink); }
+
+/* トースト */
+.toast {
+  position: fixed; left: 50%; bottom: calc(var(--tab-h) + 20px); transform: translate(-50%, 20px);
+  background: var(--ink); color: #fff; font-size: 0.82rem; font-weight: 500;
+  padding: 10px 18px; border-radius: 999px; z-index: 90;
+  opacity: 0; pointer-events: none; transition: all 0.3s var(--ease); white-space: nowrap;
+}
+.toast.is-show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (min-width: 480px) {
+  body { padding: 24px 0; }
+  .app { min-height: calc(100vh - 48px); border-radius: 28px; }
+  .mockflag { border-radius: 28px 28px 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .screen, .overlay, .sheet, .toast { animation: none; transition: none; }
+}

@@ -2,438 +2,224 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>白の余白 ｜ ホワイトニング（仮・医院名）</title>
-  <meta
-    name="description"
-    content="自由診療のホワイトニングで、あなたらしい白さへ。3問の無料診断であなたに合うプランをご提案します。効果には個人差があります。"
-  />
-
-  <!-- 明朝（見出し）／上品なゴシック（本文） -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>シカエル ｜ 歯科の美容医療を、もっと身近に（患者側モック）</title>
+  <meta name="description" content="シカエル（トリビュー歯科版）患者側アプリのモック画面。症例・口コミ・クリニック検索・予約。掲載内容はすべてサンプルです。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
-    rel="stylesheet"
-  />
-
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="app.css" />
 </head>
 <body>
-  <!-- ============ ヘッダー ============ -->
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <a href="#top" class="brand" aria-label="医院名（仮）トップへ">
-        <span class="brand__mark" aria-hidden="true">志</span>
-        <span class="brand__name">
-          <span class="brand__name-ja">志白歯科</span>
-          <span class="brand__name-en">SHIRO DENTAL <em>（仮）</em></span>
-        </span>
-      </a>
-      <a href="#booking" class="btn btn--ghost header-cta" data-scroll>ご予約</a>
-    </div>
-  </header>
+  <div class="app">
+    <div class="mockflag">これは <b>モック（サンプル）</b> です ｜ 医院・料金・症例・口コミはすべて仮データ</div>
 
-  <main>
-    <!-- ============ ヒーロー ============ -->
-    <section class="hero">
-      <div class="container hero__inner">
-        <div class="hero__copy" data-reveal>
-          <p class="eyebrow">Whitening — 自由診療</p>
-          <h1 class="hero__title">
-            白は、<br />
-            いちばん静かな<br />
-            <span class="accent">自己紹介</span>。
-          </h1>
-          <p class="hero__lead">
-            派手さではなく、清潔感。<br />
-            歯の白さがつくる、第一印象の余白を。
-          </p>
-          <div class="hero__actions">
-            <a href="#diagnosis" class="btn btn--solid" data-scroll>無料診断をはじめる</a>
-            <a href="#pricing" class="btn btn--text" data-scroll>料金を見る</a>
-          </div>
-          <p class="hero__note">
-            ※自由診療（公的医療保険適用外）です。効果・期間には個人差があります。
-          </p>
-        </div>
-
-        <!-- Before / After スライダー -->
-        <figure class="ba" data-reveal>
-          <div
-            class="ba__stage"
-            id="baStage"
-            role="slider"
-            tabindex="0"
-            aria-label="施術前後の比較。左右にドラッグして白さの変化をご覧いただけます"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            aria-valuenow="50"
-          >
-            <!-- After（下層・白い） -->
-            <div class="ba__layer ba__layer--after">
-              <div class="tooth-art tooth-art--after" aria-hidden="true"></div>
-              <span class="ba__shade ba__shade--after">After ｜ シェード A1（目安）</span>
-            </div>
-            <!-- Before（上層・クリップで可変） -->
-            <div class="ba__layer ba__layer--before" id="baBefore">
-              <div class="tooth-art tooth-art--before" aria-hidden="true"></div>
-              <span class="ba__shade ba__shade--before">Before ｜ シェード A3.5（目安）</span>
-            </div>
-            <!-- ハンドル -->
-            <div class="ba__handle" id="baHandle" aria-hidden="true">
-              <span class="ba__handle-line"></span>
-              <span class="ba__handle-grip">
-                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                  <path d="M9 6l-4 6 4 6M15 6l4 6-4 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-            </div>
-          </div>
-          <figcaption class="ba__caption">
-            イメージ（仮・サンプル）。実症例写真は、ご本人の同意および限定解除要件を満たしたうえで掲載します。
-          </figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ============ なぜ自費で白くするのか ============ -->
-    <section class="why section" id="why">
-      <div class="container">
-        <header class="section__head" data-reveal>
-          <p class="eyebrow">Why</p>
-          <h2 class="section__title">なぜ、自費で白くするのか。</h2>
-          <p class="section__lead">
-            数字で煽るのではなく、毎日の質感を変えるために。
-          </p>
-        </header>
-        <ul class="why__grid">
-          <li class="why__item" data-reveal>
-            <span class="why__no">01</span>
-            <h3 class="why__title">第一印象の余白</h3>
-            <p class="why__text">
-              話す前に伝わるのは、表情と清潔感。白い歯は、言葉より先にあなたを整えます。
-            </p>
-          </li>
-          <li class="why__item" data-reveal>
-            <span class="why__no">02</span>
-            <h3 class="why__title">清潔感という品格</h3>
-            <p class="why__text">
-              手入れされた口元は、年齢や流行に左右されない静かな信頼につながります。
-            </p>
-          </li>
-          <li class="why__item" data-reveal>
-            <span class="why__no">03</span>
-            <h3 class="why__title">自分への自信</h3>
-            <p class="why__text">
-              鏡の前で笑える日々を。小さな自信が、表情と振る舞いをやわらかくします。
-            </p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ ★無料診断（核） ============ -->
-    <section class="diagnosis section section--tint" id="diagnosis">
-      <div class="container">
-        <header class="section__head" data-reveal>
-          <p class="eyebrow">Free Diagnosis</p>
-          <h2 class="section__title">3問で、あなたの白さ設計。</h2>
-          <p class="section__lead">
-            タップで進む無料診断。あなたに合うプランの目安をご提案します。
-          </p>
-        </header>
-
-        <div class="quiz" data-reveal>
-          <!-- 進捗 -->
-          <div class="quiz__progress" aria-hidden="true">
-            <span class="quiz__progress-bar" id="quizBar"></span>
-          </div>
-
-          <!-- 質問群 -->
-          <form id="quizForm" class="quiz__form" novalidate>
-            <!-- Q1 -->
-            <fieldset class="quiz__step is-active" data-step="0">
-              <legend class="quiz__q"><span class="quiz__q-no">Q1.</span> いつまでに白くしたいですか？</legend>
-              <div class="quiz__options" role="group">
-                <button type="button" class="opt" data-q="when" data-value="soon">
-                  <span class="opt__label">できるだけ早く</span>
-                  <span class="opt__sub">大切な予定が近い</span>
-                </button>
-                <button type="button" class="opt" data-q="when" data-value="weeks">
-                  <span class="opt__label">数週間〜1ヶ月</span>
-                  <span class="opt__sub">無理なく進めたい</span>
-                </button>
-                <button type="button" class="opt" data-q="when" data-value="slow">
-                  <span class="opt__label">じっくり長く</span>
-                  <span class="opt__sub">維持を重視したい</span>
-                </button>
-              </div>
-            </fieldset>
-
-            <!-- Q2 -->
-            <fieldset class="quiz__step" data-step="1">
-              <legend class="quiz__q"><span class="quiz__q-no">Q2.</span> 歯がしみる（知覚過敏）ことはありますか？</legend>
-              <div class="quiz__options" role="group">
-                <button type="button" class="opt" data-q="sensitivity" data-value="yes">
-                  <span class="opt__label">よくある</span>
-                  <span class="opt__sub">冷たいものなどでしみる</span>
-                </button>
-                <button type="button" class="opt" data-q="sensitivity" data-value="some">
-                  <span class="opt__label">少しある</span>
-                  <span class="opt__sub">ときどき気になる</span>
-                </button>
-                <button type="button" class="opt" data-q="sensitivity" data-value="no">
-                  <span class="opt__label">ほとんどない</span>
-                  <span class="opt__sub">気にならない</span>
-                </button>
-              </div>
-            </fieldset>
-
-            <!-- Q3 -->
-            <fieldset class="quiz__step" data-step="2">
-              <legend class="quiz__q"><span class="quiz__q-no">Q3.</span> いちばん重視したいことは？</legend>
-              <div class="quiz__options" role="group">
-                <button type="button" class="opt" data-q="priority" data-value="speed">
-                  <span class="opt__label">即効性</span>
-                  <span class="opt__sub">短期間で実感したい</span>
-                </button>
-                <button type="button" class="opt" data-q="priority" data-value="lasting">
-                  <span class="opt__label">持続性</span>
-                  <span class="opt__sub">白さを長く保ちたい</span>
-                </button>
-                <button type="button" class="opt" data-q="priority" data-value="easy">
-                  <span class="opt__label">手軽さ・コスト</span>
-                  <span class="opt__sub">自分のペースで</span>
-                </button>
-              </div>
-            </fieldset>
-          </form>
-
-          <!-- 戻る -->
-          <div class="quiz__nav">
-            <button type="button" class="btn btn--text" id="quizBack" hidden>← 前の質問へ</button>
-          </div>
-
-          <!-- 結果 -->
-          <div class="result" id="quizResult" hidden aria-live="polite">
-            <p class="result__eyebrow">あなたへのおすすめ（目安）</p>
-            <h3 class="result__plan" id="resultPlan">—</h3>
-            <p class="result__desc" id="resultDesc"></p>
-            <p class="result__note" id="resultSensitivity" hidden></p>
-            <div class="result__actions">
-              <a href="#booking" class="btn btn--solid" data-scroll>このプランで相談・予約する</a>
-              <button type="button" class="btn btn--text" id="quizRestart">もう一度診断する</button>
-            </div>
-            <p class="result__disclaimer">
-              ※診断結果は目安です。実際の適応・プランは、口腔内の状態を診たうえで歯科医師がご提案します。効果には個人差があります。
-            </p>
-          </div>
+    <!-- ============ ホーム ============ -->
+    <section class="screen is-active" id="screen-home" data-screen="home">
+      <div class="appbar">
+        <span class="logo">シカ<b>エル</b></span>
+        <div class="appbar__icons">
+          <button class="iconbtn" aria-label="検索" data-goto="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+          </button>
+          <button class="iconbtn dot" aria-label="お知らせ" data-toast="お知らせは準備中です（モック）">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          </button>
         </div>
       </div>
+
+      <button class="searchbar" data-goto="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+        <span style="color:var(--ink-faint);font-size:.92rem;">気になる施術・医院をさがす</span>
+      </button>
+
+      <div class="chips" id="homeCats"></div>
+
+      <div class="section-head"><h2>目的からさがす</h2></div>
+      <div class="goals" id="homeGoals"></div>
+
+      <div class="section-head"><h2>人気の症例</h2><span class="more">すべて見る</span></div>
+      <div class="rail" id="homeCases"></div>
+
+      <div class="section-head"><h2>注目のクリニック</h2><span class="more">すべて見る</span></div>
+      <div class="rail" id="homeClinics"></div>
+
+      <div class="section-head"><h2>新着の症例</h2></div>
+      <div class="grid" id="homeNew"></div>
+
+      <p class="detail-note" style="padding:8px 16px 24px;">
+        ※掲載中の症例・料金・口コミはすべてサンプル（モック）です。各施術は自由診療（保険適用外）の場合があり、効果・期間には個人差があります。
+      </p>
     </section>
 
-    <!-- ============ 料金プラン ============ -->
-    <section class="pricing section" id="pricing">
-      <div class="container">
-        <header class="section__head" data-reveal>
-          <p class="eyebrow">Plans &amp; Fees</p>
-          <h2 class="section__title">料金は、透明に。</h2>
-          <p class="section__lead">
-            すべて税込・自由診療の仮価格です。実際の費用は診察後にご案内します。
-          </p>
-        </header>
-
-        <div class="plans">
-          <article class="plan" data-plan="office" data-reveal>
-            <h3 class="plan__name">オフィス</h3>
-            <p class="plan__for">医院で、短期間に</p>
-            <p class="plan__price"><span class="plan__amount">¥22,000</span><span class="plan__unit">／1回（税込・仮）</span></p>
-            <ul class="plan__feat">
-              <li>来院しその場で施術</li>
-              <li>短期間で実感しやすい</li>
-              <li>大切な予定の前に</li>
-            </ul>
-          </article>
-
-          <article class="plan plan--featured" data-plan="dual" data-reveal>
-            <span class="plan__badge">バランス型</span>
-            <h3 class="plan__name">デュアル</h3>
-            <p class="plan__for">医院＋自宅で、両取り</p>
-            <p class="plan__price"><span class="plan__amount">¥49,500</span><span class="plan__unit">／一式（税込・仮）</span></p>
-            <ul class="plan__feat">
-              <li>オフィスとホームの併用</li>
-              <li>実感と持続のバランス</li>
-              <li>後戻りを抑えやすい設計</li>
-            </ul>
-          </article>
-
-          <article class="plan" data-plan="home" data-reveal>
-            <h3 class="plan__name">ホーム</h3>
-            <p class="plan__for">自宅で、自分のペースで</p>
-            <p class="plan__price"><span class="plan__amount">¥33,000</span><span class="plan__unit">／一式（税込・仮）</span></p>
-            <ul class="plan__feat">
-              <li>専用マウスピース＋ジェル</li>
-              <li>低濃度でゆるやかに</li>
-              <li>白さを長く保ちやすい</li>
-            </ul>
-          </article>
-        </div>
-
-        <p class="pricing__note">
-          価格・回数・内容は仮置きです。被せ物・詰め物・人工歯は白くなりません。
-        </p>
+    <!-- ============ さがす ============ -->
+    <section class="screen" id="screen-search" data-screen="search">
+      <div class="appbar"><h1 class="appbar__title">さがす</h1></div>
+      <div class="searchbar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+        <input id="searchInput" type="search" placeholder="施術名・医院名・エリアで検索" />
       </div>
+      <div class="toggle">
+        <button class="is-on" data-mode="case">症例</button>
+        <button data-mode="clinic">クリニック</button>
+      </div>
+      <div class="filterbar" id="searchFilters"></div>
+      <p class="result-count" id="searchCount"></p>
+      <div id="searchResults"></div>
     </section>
 
-    <!-- ============ お客様の声 ============ -->
-    <section class="voices section section--tint" id="voices">
-      <div class="container">
-        <header class="section__head" data-reveal>
-          <p class="eyebrow">Voices</p>
-          <h2 class="section__title">お客様の声</h2>
-          <p class="section__lead">
-            <strong>※以下はすべてサンプル（イメージ）です。</strong>実際の感想に差し替えます。掲載は個人の感想であり、効果を保証するものではありません。
-          </p>
-        </header>
-
-        <ul class="voices__grid">
-          <li class="voice" data-reveal>
-            <span class="voice__tag">サンプル</span>
-            <p class="voice__text">「写真うつりが変わった気がして、笑うのが少し楽しくなりました。」</p>
-            <p class="voice__meta">30代・会社員（仮）</p>
-          </li>
-          <li class="voice" data-reveal>
-            <span class="voice__tag">サンプル</span>
-            <p class="voice__text">「しみないか心配でしたが、相談しながら進められて安心でした。」</p>
-            <p class="voice__meta">40代・自営業（仮）</p>
-          </li>
-          <li class="voice" data-reveal>
-            <span class="voice__tag">サンプル</span>
-            <p class="voice__text">「自宅でできるので、自分のペースで続けられています。」</p>
-            <p class="voice__meta">20代・サービス業（仮）</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ ホワイトニングの先へ ============ -->
-    <section class="beyond section" id="beyond">
-      <div class="container">
-        <header class="section__head" data-reveal>
-          <p class="eyebrow">The Next Step</p>
-          <h2 class="section__title">白さの、その先へ。</h2>
-          <p class="section__lead">
-            白くするうちに、気になりはじめる方へ。形や並びまで含めた選択肢もあります。
-          </p>
-        </header>
-
-        <ul class="beyond__grid">
-          <li class="beyond__item" data-reveal>
-            <h3 class="beyond__title">銀歯が気になる</h3>
-            <p class="beyond__text">
-              白くなるほど、銀色は目立つもの。自然な色味のセラミックという選択肢があります。
-            </p>
-            <a href="#booking" class="link-arrow" data-scroll>セラミックを相談する →</a>
-          </li>
-          <li class="beyond__item" data-reveal>
-            <h3 class="beyond__title">すきっ歯・歯並び</h3>
-            <p class="beyond__text">
-              白さに加えて、並びを整えるとさらに印象が変わります。矯正のご相談も承ります。
-            </p>
-            <a href="#booking" class="link-arrow" data-scroll>矯正を相談する →</a>
-          </li>
-        </ul>
-        <p class="beyond__note">
-          いずれも自由診療です。費用・期間・リスクは内容により異なります。診察のうえでご案内します。
-        </p>
-      </div>
+    <!-- ============ 保存 ============ -->
+    <section class="screen" id="screen-saved" data-screen="saved">
+      <div class="appbar"><h1 class="appbar__title">保存した症例</h1></div>
+      <div id="savedList"></div>
     </section>
 
     <!-- ============ 予約 ============ -->
-    <section class="booking section section--tint" id="booking">
-      <div class="container booking__inner" data-reveal>
-        <h2 class="section__title">ご予約・ご相談</h2>
-        <p class="booking__lead">
-          まずはカウンセリングから。あなたに合う進め方を一緒に決めましょう。
-        </p>
-        <div class="booking__actions">
-          <!-- TODO: 実際のLINE公式アカウントURLに差し替え -->
-          <a href="#" class="btn btn--line" data-placeholder="LINE">LINEで予約（仮）</a>
-          <!-- TODO: 実際のWeb予約システムURLに差し替え -->
-          <a href="#" class="btn btn--solid" data-placeholder="Web">Webで予約（仮）</a>
-        </div>
-        <p class="booking__hours">
-          診療時間・休診日（仮）：平日 10:00–19:00／土 10:00–17:00／日祝休
-        </p>
+    <section class="screen" id="screen-booking" data-screen="booking">
+      <div class="appbar"><h1 class="appbar__title">予約</h1></div>
+
+      <div class="reserve-card">
+        <span class="badge">次回の予約（サンプル）</span>
+        <h3>ホワイトニング 初回カウンセリング</h3>
+        <p>アオバ ホワイトニング表参道<br>6月10日（火）14:00 〜</p>
       </div>
+
+      <div class="section-head"><h2>新しく予約する</h2></div>
+      <form id="bookingForm">
+        <div class="field">
+          <label>クリニック</label>
+          <select id="bkClinic" required></select>
+        </div>
+        <div class="field">
+          <label>メニュー</label>
+          <select id="bkMenu" required>
+            <option value="">選択してください</option>
+            <option>無料カウンセリング</option>
+            <option>オフィスホワイトニング</option>
+            <option>ホームホワイトニング</option>
+            <option>マウスピース矯正 相談</option>
+            <option>セラミック 相談</option>
+            <option>クリーニング / PMTC</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>来院区分</label>
+          <select id="bkType"><option>初めて（初診）</option><option>2回目以降（再診）</option></select>
+        </div>
+        <div class="field">
+          <label>希望日</label>
+          <input type="date" id="bkDate" required />
+        </div>
+        <div class="field">
+          <label>希望時間帯</label>
+          <select id="bkTime"><option>午前（10:00–12:00）</option><option>午後（13:00–16:00）</option><option>夕方以降（16:00–19:00）</option></select>
+        </div>
+        <div class="field">
+          <label>お名前</label>
+          <input type="text" id="bkName" placeholder="例）歯科 花子" required />
+        </div>
+        <div class="field">
+          <label>連絡先（電話 / メール）</label>
+          <input type="text" id="bkContact" placeholder="例）090-0000-0000" required />
+        </div>
+        <div class="field">
+          <button type="submit" class="btn btn--pink">予約内容を確認する</button>
+          <p class="detail-note" style="margin-top:10px;text-align:center;">
+            ※これはモックです。送信しても実際の予約は行われません。
+          </p>
+        </div>
+      </form>
     </section>
-  </main>
 
-  <!-- ============ フッター（医療広告ガイドライン準拠の注記） ============ -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="compliance" id="compliance">
-        <h2 class="compliance__title">ホワイトニングについての注意事項（限定解除に基づく明示）</h2>
-
-        <div class="compliance__block">
-          <h3>治療内容</h3>
-          <p>
-            歯の表面に薬剤（過酸化水素・過酸化尿素等）を作用させ、歯を内側から明るくする自由診療です。
-            医院で行う「オフィス」、ご自宅で行う「ホーム」、両者を併用する「デュアル」があります。
-            被せ物・詰め物・差し歯などの人工物、神経を失った歯は、ホワイトニングでは白くなりません。
-          </p>
-        </div>
-
-        <div class="compliance__block">
-          <h3>標準的な費用（税込・仮価格）</h3>
-          <p>
-            オフィス ¥22,000／1回、ホーム ¥33,000／一式、デュアル ¥49,500／一式。
-            回数や口腔内の状態により費用は変動します。実際の費用は診察時にご案内します。
-          </p>
-        </div>
-
-        <div class="compliance__block">
-          <h3>主なリスク・副作用</h3>
-          <ul>
-            <li>施術中・施術後に歯がしみる（知覚過敏）ことがあります。多くは一時的です。</li>
-            <li>歯ぐきや唇に薬剤が触れ、一時的に白くなる・しみることがあります。</li>
-            <li>時間の経過とともに色が戻る（後戻り）ため、定期的なメンテナンスを推奨します。</li>
-            <li>効果の度合いや必要回数には個人差があります。歯の状態によっては適応とならない場合があります。</li>
-            <li>妊娠中・授乳中の方、無カタラーゼ症の方などは施術をお受けいただけない場合があります。</li>
-          </ul>
-        </div>
-
-        <div class="compliance__block">
-          <h3>その他</h3>
-          <ul>
-            <li>本ページのホワイトニング・セラミック・矯正は、いずれも自由診療であり、公的医療保険は適用されません。</li>
-            <li>効果・経過には個人差があります。掲載中の写真・お客様の声はサンプル（イメージ）です。実データへの差し替えを前提としています。</li>
-            <li>Before/After等を掲載する際は、ご本人の同意のうえ、治療内容・標準的費用・主なリスクを併記します。</li>
-          </ul>
+    <!-- ============ マイページ ============ -->
+    <section class="screen" id="screen-mypage" data-screen="mypage">
+      <div class="appbar"><h1 class="appbar__title">マイページ</h1></div>
+      <div class="profile">
+        <div class="avatar">ゲ</div>
+        <div>
+          <div class="profile__name">ゲストさん</div>
+          <div class="profile__sub">ログインすると症例の保存・予約管理ができます</div>
         </div>
       </div>
+      <div class="pad" style="padding-top:0;">
+        <button class="btn btn--pink" data-toast="会員登録はモックです">無料で会員登録</button>
+        <div style="height:8px;"></div>
+        <button class="btn btn--ghost" data-toast="ログインはモックです">ログイン</button>
+      </div>
 
-      <div class="site-footer__base">
-        <p class="site-footer__brand">志白歯科 SHIRO DENTAL（仮）</p>
-        <p class="site-footer__addr">所在地・電話番号・院長名（仮）／ご予約はLINE・Webから</p>
-        <p class="site-footer__copy">© <span id="year"></span> SHIRO DENTAL（仮）. 表示内容はすべて仮置きです。</p>
+      <div class="menu-list">
+        <button class="menu-row" data-goto="saved">
+          <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          保存した症例・クリニック<span class="chev">›</span>
+        </button>
+        <button class="menu-row" data-goto="booking">
+          <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          予約の確認・変更<span class="chev">›</span>
+        </button>
+        <button class="menu-row" data-toast="閲覧履歴はモックです">
+          <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/><path d="M12 7v5l3 2"/></svg>
+          最近見た症例<span class="chev">›</span>
+        </button>
+        <button class="menu-row" data-toast="ヘルプはモックです">
+          <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+          ヘルプ・お問い合わせ<span class="chev">›</span>
+        </button>
+        <button class="menu-row" data-toast="自由診療・効果には個人差があります。症例掲載は限定解除要件（治療内容・標準費用・主なリスク）に基づき表示します。">
+          <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          医療広告ガイドラインについて<span class="chev">›</span>
+        </button>
+      </div>
+      <p class="detail-note" style="padding:18px 16px 30px;text-align:center;">
+        シカエル（モック）｜ トリビューの歯科版・患者側プロトタイプ<br>掲載内容はすべてサンプルです。
+      </p>
+    </section>
+
+    <!-- ============ 詳細オーバーレイ ============ -->
+    <div class="overlay" id="overlay" aria-hidden="true">
+      <div class="overlay__bar">
+        <button class="iconbtn" id="overlayBack" aria-label="戻る">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="ttl" id="overlayTitle">詳細</span>
+      </div>
+      <div id="overlayContent"></div>
+    </div>
+
+    <!-- フィルタシート -->
+    <div class="sheet-mask" id="sheetMask">
+      <div class="sheet" id="sheet">
+        <div class="sheet__grip"></div>
+        <div id="sheetBody"></div>
       </div>
     </div>
-  </footer>
 
-  <!-- ============ 固定予約バー（モバイル下部） ============ -->
-  <nav class="dockbar" id="dockbar" aria-label="予約">
-    <a href="#" class="dockbar__btn dockbar__btn--line" data-placeholder="LINE">
-      <span class="dockbar__ico" aria-hidden="true">◍</span>
-      <span>LINE予約</span>
-    </a>
-    <a href="#" class="dockbar__btn dockbar__btn--web" data-placeholder="Web">
-      <span class="dockbar__ico" aria-hidden="true">◆</span>
-      <span>Web予約</span>
-    </a>
-  </nav>
+    <!-- 下部タブ -->
+    <nav class="tabbar">
+      <button class="tab is-on" data-goto="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        ホーム
+      </button>
+      <button class="tab" data-goto="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+        さがす
+      </button>
+      <button class="tab" data-goto="saved">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.6l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 22l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        保存
+      </button>
+      <button class="tab" data-goto="booking">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        予約
+      </button>
+      <button class="tab" data-goto="mypage">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        マイページ
+      </button>
+    </nav>
 
-  <script src="assets/js/main.js" defer></script>
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
