@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>シカエル ｜ 歯科の美容医療を、もっと身近に（患者側モック）</title>
-  <meta name="description" content="シカエル（トリビュー歯科版）患者側アプリのモック画面。症例・口コミ・クリニック検索・予約。掲載内容はすべてサンプルです。" />
+  <meta name="description" content="シカエル（トリビュー歯科版）患者側アプリのモック画面。お得なメニュー・症例・口コミ・クリニック検索・予約。掲載内容はすべてサンプルです。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -17,81 +17,158 @@
     <!-- ============ ホーム ============ -->
     <section class="screen is-active" id="screen-home" data-screen="home">
       <div class="appbar">
-        <span class="logo">シカ<b>エル</b></span>
+        <button class="avatar-btn" aria-label="マイページ" data-goto="mypage">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </button>
         <div class="appbar__icons">
-          <button class="iconbtn" aria-label="検索" data-goto="search">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+          <button class="iconlbl" data-goto="saved">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg>
+            クリップ
           </button>
-          <button class="iconbtn dot" aria-label="お知らせ" data-toast="お知らせは準備中です（モック）">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+          <button class="iconlbl" data-goto="booking">
+            <span class="badge-num">3</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            予約
           </button>
         </div>
       </div>
 
-      <button class="searchbar" data-goto="search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
-        <span style="color:var(--ink-faint);font-size:.92rem;">気になる施術・医院をさがす</span>
+      <!-- ポイント -->
+      <button class="pointsbar" data-toast="ポイント機能はモックです">
+        <span class="p">P</span> 利用可能ポイント <b>0円分</b>
+        <span class="chev">›</span>
       </button>
 
-      <div class="chips" id="homeCats"></div>
+      <!-- 検索ブロック -->
+      <div class="searchblock">
+        <h2>施術やクリニック名から探す</h2>
+        <button class="area-pill" data-sheet="area">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <span id="homeArea">東京都</span>
+          <span class="chev">⌄</span>
+        </button>
+        <button class="sb-input" data-goto="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+          施術・クリニック・ドクター名を入力
+        </button>
+      </div>
 
-      <div class="section-head"><h2>目的からさがす</h2></div>
-      <div class="goals" id="homeGoals"></div>
+      <!-- 興味のあるカテゴリ -->
+      <div class="section-head" style="padding-bottom:0;"><h2 style="font-size:1rem;">興味のあるカテゴリ</h2></div>
+      <div class="catcircles" id="homeCats"></div>
 
-      <div class="section-head"><h2>人気の症例</h2><span class="more">すべて見る</span></div>
+      <!-- バナー -->
+      <div class="banners">
+        <div class="banner banner--a"><h3>毎日更新！<br>この日だけの限定価格</h3><span class="tap">TAP</span></div>
+        <div class="banner banner--b"><h3>シカエル限定<br>ポイント還元 最大10倍</h3><p>※サンプル</p><span class="tap">TAP</span></div>
+        <div class="banner banner--c"><h3>ホワイトニング<br>はじめてさん特集</h3><span class="tap">TAP</span></div>
+      </div>
+
+      <!-- 人気のお得なメニュー -->
+      <div class="section-head"><h2>人気のお得なメニュー 📣</h2><span class="more">›</span></div>
+      <div class="menu-rail" id="homeMenus"></div>
+      <p class="sub-note">※サンプルのメニューをランダム表示しています</p>
+
+      <!-- シカエル限定 -->
+      <div class="section-head"><h2>シカエル限定のお得なメニュー 💎</h2><span class="more">›</span></div>
+      <div class="menu-rail" id="homeLimited"></div>
+      <p class="sub-note">※サンプルのメニューをランダム表示しています</p>
+
+      <!-- 注目の症例 -->
+      <div class="section-head"><h2>注目の症例（ビフォーアフター）</h2><span class="more">›</span></div>
       <div class="rail" id="homeCases"></div>
 
-      <div class="section-head"><h2>注目のクリニック</h2><span class="more">すべて見る</span></div>
-      <div class="rail" id="homeClinics"></div>
+      <!-- クリニックの閲覧履歴 -->
+      <div class="section-head"><h2>クリニックの閲覧履歴</h2><span class="more">›</span></div>
+      <div class="rail" id="homeHistory"></div>
 
-      <div class="section-head"><h2>新着の症例</h2></div>
-      <div class="grid" id="homeNew"></div>
+      <!-- 急上昇 人気の施術 -->
+      <div class="section-head"><h2>急上昇 ⚡ 人気の施術</h2></div>
+      <div class="hashtags" id="homeTags"></div>
 
-      <p class="detail-note" style="padding:8px 16px 24px;">
-        ※掲載中の症例・料金・口コミはすべてサンプル（モック）です。各施術は自由診療（保険適用外）の場合があり、効果・期間には個人差があります。
+      <p class="detail-note" style="padding:10px 14px 24px;">
+        ※掲載中のメニュー・症例・料金・口コミはすべてサンプル（モック）です。各施術は自由診療（保険適用外）の場合があり、効果・期間には個人差があります。
       </p>
+    </section>
+
+    <!-- ============ ドクター ============ -->
+    <section class="screen" id="screen-doctor" data-screen="doctor">
+      <div class="appbar"><h1 class="appbar__title">ドクター</h1></div>
+      <div class="bigsearch">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+        <input type="search" id="doctorSearch" placeholder="ドクター名・専門・クリニックで検索" />
+      </div>
+      <div class="section-head"><h2>ドクターから探す</h2></div>
+      <p class="sub-note">気になるドクターから、対応クリニックの予約に進めます（サンプル）。</p>
+      <div id="doctorList"></div>
     </section>
 
     <!-- ============ さがす ============ -->
     <section class="screen" id="screen-search" data-screen="search">
-      <div class="appbar"><h1 class="appbar__title">さがす</h1></div>
-      <div class="searchbar">
+      <div class="appbar"><h1 class="appbar__title">検索</h1></div>
+      <div class="bigsearch">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
-        <input id="searchInput" type="search" placeholder="施術名・医院名・エリアで検索" />
+        <input type="search" id="searchInput" placeholder="クリニック、ドクター、施術など" />
       </div>
-      <div class="toggle">
-        <button class="is-on" data-mode="case">症例</button>
-        <button data-mode="clinic">クリニック</button>
+
+      <div class="cond">
+        <h3>条件を指定して探す</h3>
+        <div class="cond-grid">
+          <div class="cond-field">
+            <label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>エリア</label>
+            <select id="condArea"><option>すべて</option><option selected>東京都</option><option>神奈川県</option><option>大阪府</option><option>愛知県</option></select>
+          </div>
+          <div class="cond-field">
+            <label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>日付</label>
+            <select id="condDate"><option>指定なし</option><option>本日</option><option>明日</option><option>今週末</option></select>
+          </div>
+          <div class="cond-field full">
+            <label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 9l7-7 7 7"/></svg>施術</label>
+            <select id="condTreat"><option>指定なし</option><option>ホワイトニング</option><option>矯正</option><option>セラミック</option><option>ガムピール</option><option>クリーニング</option></select>
+          </div>
+        </div>
+        <div class="cond-actions">
+          <button class="clear" id="condClear">クリア</button>
+          <button class="btn btn--teal" id="condSearch" style="flex:1;">検索</button>
+        </div>
+        <p class="cond-count">検索結果：特別メニュー <b id="condCount">0</b> 件</p>
       </div>
-      <div class="filterbar" id="searchFilters"></div>
-      <p class="result-count" id="searchCount"></p>
-      <div id="searchResults"></div>
+
+      <div class="section-head"><h2 style="font-size:1rem;">ピックアップから探す</h2></div>
+      <div class="chips" id="pickup"></div>
+
+      <div class="section-head"><h2 style="font-size:1rem;">部位・カテゴリから探す</h2></div>
+      <div class="parts-grid" id="partsGrid"></div>
+
+      <div class="section-head"><h2 style="font-size:1rem;">コンテンツから探す</h2></div>
+      <div class="content-cards">
+        <button class="content-card" data-results="menu"><span><b>特別メニュー</b><small>から探す</small></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l-4 6 10 13L22 9l-4-6z"/><path d="M2 9h20"/></svg></span></button>
+        <button class="content-card" data-results="review"><span><b>口コミ</b><small>から探す</small></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span></button>
+        <button class="content-card" data-results="case"><span><b>症例</b><small>から探す</small></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg></span></button>
+        <button class="content-card" data-toast="動画はモックです"><span><b>動画</b><small>から探す</small></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m10 9 5 3-5 3z"/></svg></span></button>
+        <button class="content-card" data-toast="コラムはモックです"><span><b>コラム</b><small>から探す</small></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span></button>
+        <button class="content-card" data-toast="解説記事はモックです"><span><b>解説記事</b><small>から探す</small></span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span></button>
+      </div>
     </section>
 
     <!-- ============ 保存 ============ -->
     <section class="screen" id="screen-saved" data-screen="saved">
-      <div class="appbar"><h1 class="appbar__title">保存した症例</h1></div>
+      <div class="appbar"><h1 class="appbar__title">クリップ（保存）</h1></div>
       <div id="savedList"></div>
     </section>
 
     <!-- ============ 予約 ============ -->
     <section class="screen" id="screen-booking" data-screen="booking">
       <div class="appbar"><h1 class="appbar__title">予約</h1></div>
-
       <div class="reserve-card">
         <span class="badge">次回の予約（サンプル）</span>
         <h3>ホワイトニング 初回カウンセリング</h3>
         <p>アオバ ホワイトニング表参道<br>6月10日（火）14:00 〜</p>
       </div>
-
       <div class="section-head"><h2>新しく予約する</h2></div>
       <form id="bookingForm">
-        <div class="field">
-          <label>クリニック</label>
-          <select id="bkClinic" required></select>
-        </div>
-        <div class="field">
-          <label>メニュー</label>
+        <div class="field"><label>クリニック</label><select id="bkClinic" required></select></div>
+        <div class="field"><label>メニュー</label>
           <select id="bkMenu" required>
             <option value="">選択してください</option>
             <option>無料カウンセリング</option>
@@ -102,31 +179,14 @@
             <option>クリーニング / PMTC</option>
           </select>
         </div>
+        <div class="field"><label>来院区分</label><select id="bkType"><option>初めて（初診）</option><option>2回目以降（再診）</option></select></div>
+        <div class="field"><label>希望日</label><input type="date" id="bkDate" required /></div>
+        <div class="field"><label>希望時間帯</label><select id="bkTime"><option>午前（10:00–12:00）</option><option>午後（13:00–16:00）</option><option>夕方以降（16:00–19:00）</option></select></div>
+        <div class="field"><label>お名前</label><input type="text" id="bkName" placeholder="例）歯科 花子" required /></div>
+        <div class="field"><label>連絡先（電話 / メール）</label><input type="text" id="bkContact" placeholder="例）090-0000-0000" required /></div>
         <div class="field">
-          <label>来院区分</label>
-          <select id="bkType"><option>初めて（初診）</option><option>2回目以降（再診）</option></select>
-        </div>
-        <div class="field">
-          <label>希望日</label>
-          <input type="date" id="bkDate" required />
-        </div>
-        <div class="field">
-          <label>希望時間帯</label>
-          <select id="bkTime"><option>午前（10:00–12:00）</option><option>午後（13:00–16:00）</option><option>夕方以降（16:00–19:00）</option></select>
-        </div>
-        <div class="field">
-          <label>お名前</label>
-          <input type="text" id="bkName" placeholder="例）歯科 花子" required />
-        </div>
-        <div class="field">
-          <label>連絡先（電話 / メール）</label>
-          <input type="text" id="bkContact" placeholder="例）090-0000-0000" required />
-        </div>
-        <div class="field">
-          <button type="submit" class="btn btn--pink">予約内容を確認する</button>
-          <p class="detail-note" style="margin-top:10px;text-align:center;">
-            ※これはモックです。送信しても実際の予約は行われません。
-          </p>
+          <button type="submit" class="btn btn--teal">予約内容を確認する</button>
+          <p class="detail-note" style="margin-top:10px;text-align:center;">※これはモックです。送信しても実際の予約は行われません。</p>
         </div>
       </form>
     </section>
@@ -138,40 +198,22 @@
         <div class="avatar">ゲ</div>
         <div>
           <div class="profile__name">ゲストさん</div>
-          <div class="profile__sub">ログインすると症例の保存・予約管理ができます</div>
+          <div class="profile__sub">ログインすると保存・予約管理ができます</div>
         </div>
       </div>
-      <div class="pad" style="padding-top:0;">
-        <button class="btn btn--pink" data-toast="会員登録はモックです">無料で会員登録</button>
+      <div style="padding:0 16px 4px;">
+        <button class="btn btn--teal" data-toast="会員登録はモックです">無料で会員登録</button>
         <div style="height:8px;"></div>
         <button class="btn btn--ghost" data-toast="ログインはモックです">ログイン</button>
       </div>
-
       <div class="menu-list">
-        <button class="menu-row" data-goto="saved">
-          <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-          保存した症例・クリニック<span class="chev">›</span>
-        </button>
-        <button class="menu-row" data-goto="booking">
-          <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          予約の確認・変更<span class="chev">›</span>
-        </button>
-        <button class="menu-row" data-toast="閲覧履歴はモックです">
-          <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v5h5"/><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/><path d="M12 7v5l3 2"/></svg>
-          最近見た症例<span class="chev">›</span>
-        </button>
-        <button class="menu-row" data-toast="ヘルプはモックです">
-          <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
-          ヘルプ・お問い合わせ<span class="chev">›</span>
-        </button>
-        <button class="menu-row" data-toast="自由診療・効果には個人差があります。症例掲載は限定解除要件（治療内容・標準費用・主なリスク）に基づき表示します。">
-          <svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          医療広告ガイドラインについて<span class="chev">›</span>
-        </button>
+        <button class="menu-row" data-goto="saved"><svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg>クリップ（保存）<span class="chev">›</span></button>
+        <button class="menu-row" data-goto="booking"><svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>予約の確認・変更<span class="chev">›</span></button>
+        <button class="menu-row" data-goto="doctor"><svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>ドクターを探す<span class="chev">›</span></button>
+        <button class="menu-row" data-toast="ヘルプはモックです"><svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>ヘルプ・お問い合わせ<span class="chev">›</span></button>
+        <button class="menu-row" data-toast="自由診療・効果には個人差があります。症例・メニュー掲載は限定解除要件（治療内容・標準費用・主なリスク）に基づき表示します。"><svg class="lead" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>医療広告ガイドラインについて<span class="chev">›</span></button>
       </div>
-      <p class="detail-note" style="padding:18px 16px 30px;text-align:center;">
-        シカエル（モック）｜ トリビューの歯科版・患者側プロトタイプ<br>掲載内容はすべてサンプルです。
-      </p>
+      <p class="detail-note" style="padding:18px 16px 30px;text-align:center;">シカエル（モック）｜ トリビューの歯科版・患者側プロトタイプ<br>掲載内容はすべてサンプルです。</p>
     </section>
 
     <!-- ============ 詳細オーバーレイ ============ -->
@@ -187,32 +229,25 @@
 
     <!-- フィルタシート -->
     <div class="sheet-mask" id="sheetMask">
-      <div class="sheet" id="sheet">
-        <div class="sheet__grip"></div>
-        <div id="sheetBody"></div>
-      </div>
+      <div class="sheet" id="sheet"><div class="sheet__grip"></div><div id="sheetBody"></div></div>
     </div>
 
-    <!-- 下部タブ -->
+    <!-- 下部タブ（4つ） -->
     <nav class="tabbar">
       <button class="tab is-on" data-goto="home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M6 3l-4 6 10 13L22 9l-4-6z"/><path d="M2 9h20"/></svg>
         ホーム
       </button>
+      <button class="tab" data-goto="doctor">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        ドクター
+      </button>
       <button class="tab" data-goto="search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
-        さがす
-      </button>
-      <button class="tab" data-goto="saved">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.6l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 22l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg>
-        保存
-      </button>
-      <button class="tab" data-goto="booking">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        予約
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+        検索
       </button>
       <button class="tab" data-goto="mypage">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
         マイページ
       </button>
     </nav>
