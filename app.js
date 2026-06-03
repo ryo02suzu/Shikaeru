@@ -61,7 +61,24 @@
     { id:"m5", title:"マウスピース矯正 はじめての相談＋口腔内スキャン", badge:"初回のみ", price:0, reg:5000, clinic:"c3", cat:"矯正", avail:"今週末 空きあり", photo:"ph--room1", limited:false },
     { id:"l1", title:"【平日限定】デュアルホワイトニング 全体", badge:"初回のみ", price:39800, reg:49500, clinic:"c2", cat:"ホワイトニング", avail:"本日・明日 空きあり", photo:"ph--room2", limited:true },
     { id:"l2", title:"【水・木限定】ガムピーリング 上下", badge:"初回・再来OK", price:8800, reg:16000, clinic:"c1", cat:"ガムピール", avail:"今週末 空きあり", photo:"ph--room1", limited:true },
-    { id:"l3", title:"【シカエル限定】オフィスホワイトニング 2回コース", badge:"初回のみ", price:17800, reg:40000, clinic:"c5", cat:"ホワイトニング", avail:"本日 空きあり", photo:"ph--room2", limited:true }
+    { id:"l3", title:"【シカエル限定】オフィスホワイトニング 2回コース", badge:"初回のみ", price:17800, reg:40000, clinic:"c5", cat:"ホワイトニング", avail:"本日 空きあり", photo:"ph--room2", limited:true },
+    // 日付指定
+    { id:"d1", title:"【6/9・10・17 限定】オフィスホワイトニング 3回照射｜全体", badge:"初回のみ", price:8800, reg:16500, clinic:"c1", cat:"ホワイトニング", avail:"本日・今週末 空きあり", photo:"ph--room1", isDate:true },
+    { id:"d2", title:"【週末限定】クリーニング＋フッ素｜着色オフ", badge:"初回・再来OK", price:5500, reg:9900, clinic:"c5", cat:"クリーニング", avail:"今週末 空きあり", photo:"ph--room2", isDate:true },
+    // モニター
+    { id:"mo1", title:"【モニター】マウスピース矯正 全体｜症例撮影にご協力", badge:"初回のみ", price:198000, reg:330000, clinic:"c3", cat:"矯正", avail:"今週末 空きあり", photo:"ph--room1", isMonitor:true },
+    { id:"mo2", title:"【モニター】前歯セラミック 2歯｜ビフォーアフター掲載", badge:"初回のみ", price:79000, reg:132000, clinic:"c4", cat:"セラミック", avail:"本日・明日 空きあり", photo:"ph--room2", isMonitor:true },
+    // PR
+    { id:"pr1", title:"デュアルホワイトニング 集中ケア｜麻酔ジェル無料", badge:"初回・再来OK", price:33000, reg:49500, clinic:"c2", cat:"ホワイトニング", avail:"明日・今週末 空きあり", photo:"ph--room1", pr:true }
+  ];
+
+  // 口コミ（リアルな口コミ・サンプル）
+  var reviews = [
+    { id:"v1", after:"ph--white", stars:5, text:"写真うつりが白くなって、笑うのが楽しくなりました。しみも少なめでした。", part:"歯", treat:"ホワイトニング", clinic:"c2", likes:12, comments:1 },
+    { id:"v2", after:"ph--pearl", stars:4, text:"気になっていた銀歯が目立たなくなって満足しています。", part:"歯", treat:"セラミック", clinic:"c4", likes:8, comments:0 },
+    { id:"v3", after:"ph--white", stars:5, text:"すきっ歯が少しずつ整ってきました。相談しながら進められて安心。", part:"歯並び", treat:"矯正", clinic:"c3", likes:15, comments:2 },
+    { id:"v4", after:"ph--pearl", stars:4, text:"歯ぐきの色が明るくなって、口元の印象が変わりました。", part:"歯ぐき", treat:"ガムピール", clinic:"c1", likes:6, comments:0 },
+    { id:"v5", after:"ph--white", stars:5, text:"クリーニングで着色がすっきり。定期的に通おうと思います。", part:"歯", treat:"クリーニング", clinic:"c5", likes:4, comments:0 }
   ];
 
   // 症例（ビフォーアフター）
@@ -118,9 +135,15 @@
   function starSVG(){ return '<svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6L12 16.6 6.5 19.2l1-6L3 8.9 9 8z"/></svg>'; }
 
   /* ============ カード ============ */
+  function menuRibbon(m){
+    if (m.isDate)  return '<span class="menu-card__ribbon menu-card__ribbon--date">日付指定枠</span>';
+    if (m.limited) return '<span class="menu-card__ribbon">シカエル限定</span>';
+    return '';
+  }
   function menuCard(m){
     var cl = clinicById(m.clinic);
-    var ribbon = m.limited ? '<span class="menu-card__ribbon">シカエル限定</span>' : '';
+    var ribbon = menuRibbon(m);
+    var mon = m.isMonitor ? '<span class="menu-card__badge mon">モニター</span>' : '';
     var reg = m.reg ? '<span class="reg">通常 ¥'+m.reg.toLocaleString("ja-JP")+'</span>' : '';
     return el(
       '<button class="menu-card" data-menu="'+m.id+'">'+
@@ -128,7 +151,7 @@
           '<div class="case__save'+(isSaved(m.id)?' is-saved':'')+'" data-save="'+m.id+'" style="right:6px;bottom:6px;width:28px;height:28px;">'+heartSVG()+'</div>'+
         '</div>'+
         '<div class="menu-card__body">'+
-          '<span class="menu-card__badge">'+m.badge+'</span>'+
+          '<span class="menu-card__badge">'+m.badge+'</span>'+mon+
           '<div class="menu-card__title">'+m.title+'</div>'+
           '<div class="menu-card__price"><span class="now">'+yen(m.price)+'</span><span class="tax">'+(m.price?'（税込）':'')+'</span>'+reg+'</div>'+
           '<div class="menu-card__clinic">「'+cl.station+'」'+cl.name+'</div>'+
@@ -167,6 +190,41 @@
     );
   }
 
+  function reviewCard(r){
+    var cl = clinicById(r.clinic);
+    var stars = "";
+    for (var i=0;i<5;i++) stars += (i < r.stars) ? "★" : '<span class="off">★</span>';
+    return el(
+      '<button class="review-card" data-clinic="'+r.clinic+'">'+
+        '<div class="review-card__img"><div class="ph '+r.after+'"></div><span class="after-tag">AFTER</span></div>'+
+        '<div class="review-card__body">'+
+          '<div class="stars">'+stars+'</div>'+
+          '<p class="review-card__text">'+r.text+'</p>'+
+          '<div class="review-card__meta">'+r.part+' / '+r.treat+'</div>'+
+          '<div class="review-card__clinic">'+cl.name+'</div>'+
+          '<div class="review-card__react"><span>♡ '+r.likes+'</span><span>💬 '+r.comments+'</span></div>'+
+        '</div>'+
+      '</button>'
+    );
+  }
+
+  var PIN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+  var CAL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
+  function clinicBigCard(cl){
+    var m0 = cl.menu[0];
+    return el(
+      '<button class="clinic-big" data-clinic="'+cl.id+'">'+
+        '<div class="clinic-big__img"><div class="ph '+cl.img+'"></div><div class="clinic-big__ribbon">ポイント・クーポン利用可</div></div>'+
+        '<div class="clinic-big__body">'+
+          '<div class="clinic-big__station">'+PIN+cl.station+'</div>'+
+          '<div class="clinic-big__name">'+cl.name+'</div>'+
+          '<div class="clinic-big__rate"><span class="rating">'+starSVG()+cl.rating+' <small>('+cl.reviews+')</small></span><span class="clinic-big__inst">'+CAL+'即時予約</span></div>'+
+          '<div class="clinic-big__menu"><div class="t">'+m0[0]+'</div><div class="p"><span class="now">'+m0[1]+'</span> <span class="tax">税込・サンプル</span></div></div>'+
+        '</div>'+
+      '</button>'
+    );
+  }
+
   function clinicRow(cl){
     var tags = cl.tags.map(function(t){ return '<span class="tag">'+t+'</span>'; }).join("");
     return el(
@@ -193,16 +251,42 @@
   }
 
   /* ============ ホーム ============ */
+  function pick(ids){ return ids.map(menuById).filter(Boolean); }
+
   function renderHome(){
+    // 興味のあるカテゴリ（丸アイコン）
     fill("#homeCats", CATS.map(function(c){
       var b = el('<button class="catcircle"><span class="ring">'+c.icon+(c.heart?'<span class="heart">'+heartSVG()+'</span>':'')+'</span><small>'+c.key+'</small></button>');
       b.addEventListener("click", function(){ openResultsByCat(c.key); });
       return b;
     }));
-    fill("#homeMenus", menus.filter(function(m){ return !m.limited; }).map(menuCard));
-    fill("#homeLimited", menus.filter(function(m){ return m.limited; }).map(menuCard));
+    // おすすめ下のサブチップ
+    fill("#homeSubchips", ["ホワイトニング","マウスピース矯正","セラミック","ガムピール","クリーニング"].map(function(k,i){
+      var b = el('<button class="chip'+(i===0?' is-on':'')+'">'+k+'</button>');
+      b.addEventListener("click", function(){ openResultsByCat(k==="マウスピース矯正"?"矯正":k); });
+      return b;
+    }));
+    // 口コミ
+    fill("#homeReviews", reviews.map(reviewCard));
+    // 人気症例
     fill("#homeCases", cases.map(caseCard));
+    // お得なメニュー（通常）
+    fill("#homeMenus", menus.filter(function(m){ return !m.limited && !m.isDate && !m.isMonitor && !m.pr; }).map(menuCard));
+    // シカエル限定
+    fill("#homeLimited", menus.filter(function(m){ return m.limited; }).map(menuCard));
+    // 日付指定
+    fill("#homeDate", menus.filter(function(m){ return m.isDate; }).map(menuCard));
+    // 口コミ件数が多いクリニック
+    fill("#homeBigClinics", clinics.slice().sort(function(a,b){ return b.reviews-a.reviews; }).map(clinicBigCard));
+    // ピックアップ[PR]
+    fill("#homePR", pick(["pr1","m3","l1"]).map(menuCard));
+    // モニター割引
+    fill("#homeMonitor", menus.filter(function(m){ return m.isMonitor; }).map(menuCard));
+    // メニューの閲覧履歴
+    fill("#homeMenuHistory", pick(["m4","m2","l2"]).map(menuCard));
+    // クリニックの閲覧履歴
     fill("#homeHistory", clinics.map(clinicHistoryCard));
+    // 急上昇人気の施術
     fill("#homeTags", ["#ホワイトニング","#マウスピース矯正","#セラミック","#ガムピール","#クリーニング","#親知らず"].map(function(t){
       var b = el('<button class="hashtag">'+t+'</button>');
       b.addEventListener("click", function(){ openResultsByCat(t.replace("#","").replace("マウスピース矯正","矯正")); });
@@ -275,7 +359,7 @@
     var risks = (RISKS[m.cat]||[]).map(function(r){ return '<li>'+r+'</li>'; }).join("");
     var reg = m.reg ? '<span class="reg">通常 ¥'+m.reg.toLocaleString("ja-JP")+'</span>' : '';
     var html =
-      '<div class="detail-hero"><div class="ph '+m.photo+'"></div>'+(m.limited?'<div class="menu-card__ribbon">シカエル限定</div>':'')+'<div class="ph__lbl">メニュー画像（サンプル）</div></div>'+
+      '<div class="detail-hero"><div class="ph '+m.photo+'"></div>'+menuRibbon(m)+'<div class="ph__lbl">メニュー画像（サンプル）</div></div>'+
       '<div class="detail-body">'+
         '<span class="detail-badge">'+m.badge+'</span>'+
         '<div class="detail-treat">'+m.title+'</div>'+
