@@ -12,7 +12,11 @@
     tooth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M7 3C5 3 4 5 4.2 8c.2 3 1 5.5 1.7 9.3.4 2 2.4 2 2.8 0l.8-4.2c.2-1 1.8-1 2 0l.8 4.2c.4 2 2.4 2 2.8 0 .7-3.8 1.5-6.3 1.7-9.3C19.9 5 18.9 3 17 3c-1.6 0-2.4 1-5 1S8.6 3 7 3z"/></svg>',
     sparkle: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>',
     smile: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg>',
-    dots: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18" cy="12" r="1.6"/></svg>'
+    dots: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18" cy="12" r="1.6"/></svg>',
+    alert: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h16.9a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>',
+    shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+    home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>',
+    child: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/></svg>'
   };
 
   /* ============ サンプルデータ ============ */
@@ -110,6 +114,94 @@
     { key:"親知らず",      icon:ICON.tooth },
     { key:"その他",        icon:ICON.dots }
   ];
+
+  // 悩み・目的軸 9系統タクソノミー（最上位）→ 施術（費用相場・相性つき）
+  // ※費用は自費総額の一般的レンジ／保険は3割負担の目安（サンプル）。cat は症例・メニューの絞り込みに対応。
+  var TAXONOMY = [
+    { key:"A", short:"白くしたい", icon:ICON.sparkle,
+      title:"歯を白くしたい（ホワイトニング・審美）",
+      desc:"白さ・審美の入口。ビフォーアフターが映え、比較検討が活発な領域です。",
+      tx:[
+        { name:"オフィスホワイトニング", range:"約1万〜7万円／回", note:"医院で高濃度薬剤＋光照射。即効性が高い。", fit:"◎入口", cat:"ホワイトニング" },
+        { name:"ホームホワイトニング", range:"約2万〜5万円", note:"自宅でマウスピース＋低濃度。持続性が高い。", fit:"◎", cat:"ホワイトニング" },
+        { name:"デュアルホワイトニング", range:"約5万〜10万円", note:"オフィス＋ホーム併用で効果を最大化。", fit:"◎", cat:"ホワイトニング" },
+        { name:"ラミネートベニア", range:"約5万〜15万円／本", note:"歯の表面に薄いセラミックを貼り付け。高単価審美。", fit:"◎主役", cat:"セラミック" },
+        { name:"セラミック治療（詰め物・被せ物）", range:"約4万〜22万円", note:"素材・形態で選択。比較検討が活発。", fit:"◎主役", cat:"セラミック" },
+        { name:"ダイレクトボンディング", range:"約1万〜5万円／歯", note:"レジンで即日審美修復。手頃な入口。", fit:"○", cat:"セラミック" }
+      ] },
+    { key:"B", short:"歯並び", icon:ICON.tooth,
+      title:"歯並びを治したい（矯正）",
+      desc:"最大の収益源かつ差別化テーマ。ブランド横断の比較ニーズが大きい領域です。",
+      tx:[
+        { name:"マウスピース矯正", range:"部分 約35万〜／全顎 約80万〜100万円", note:"ブランドが20種以上。透明で目立ちにくい。", fit:"◎◎キラー", cat:"矯正" },
+        { name:"ワイヤー矯正（表側）", range:"部分 約30万〜60万／全体 約60万〜100万円", note:"適応が広く確実。経過写真が映える。", fit:"◎", cat:"矯正" },
+        { name:"裏側矯正（リンガル）", range:"全体 約100万〜170万円", note:"見えない位置の装置。高単価。", fit:"◎", cat:"矯正" },
+        { name:"部分矯正（プチ矯正）", range:"約10万〜60万円", note:"前歯中心。手頃でビフォーアフターが明快。", fit:"◎入口", cat:"矯正" },
+        { name:"小児矯正（Ⅰ期・Ⅱ期）", range:"約10万〜50万円", note:"顎の成長誘導。保護者の比較が活発。", fit:"○", cat:"矯正" },
+        { name:"保定・付随処置", range:"装置により異なる", note:"アンカースクリュー・IPR・リテーナーなど。", fit:"△解説", cat:"矯正" }
+      ] },
+    { key:"C", short:"欠損を補う", icon:ICON.tooth,
+      title:"歯を補いたい（欠損補綴）",
+      desc:"超高単価・高LTV。1件あたりの送客価値が大きい領域です。",
+      tx:[
+        { name:"インプラント（1本）", range:"約30万〜50万円／本", note:"骨に人工歯根。検討期間は長め。", fit:"○〜◎", cat:"インプラント" },
+        { name:"オールオン4／6", range:"片顎 約200万〜450万円", note:"少数インプラントで全顎を支える。", fit:"○", cat:"インプラント" },
+        { name:"自費の入れ歯", range:"約8万〜80万円", note:"ノンクラスプ・金属床・コーヌスなど。", fit:"△網羅", cat:"入れ歯" },
+        { name:"ブリッジ（セラミック）", range:"医院により異なる", note:"審美（セラミック）と接続可能。", fit:"○", cat:"セラミック" }
+      ] },
+    { key:"D", short:"歯ぐき・口元", icon:ICON.smile,
+      title:"歯ぐき・口元の見た目（ガム・口元審美）",
+      desc:"口元審美。低単価の入口〜美容医療層と親和性が高い領域です。",
+      tx:[
+        { name:"ガムピーリング（黒ずみ除去）", range:"約5千〜1万円／回", note:"薬剤・レーザー等。ビフォーアフターが明快。", fit:"◎入口", cat:"ガムピール" },
+        { name:"ガミースマイル治療", range:"約1万〜100万円（術式による）", note:"歯肉整形・ボトックス・矯正など。", fit:"◎", cat:"ガムピール" },
+        { name:"歯肉整形・ライン形成", range:"1歯〜・医院により異なる", note:"左右非対称の歯ぐきラインを修正。", fit:"◎", cat:"ガムピール" },
+        { name:"歯ぐきの再生・移植", range:"医院により異なる", note:"歯肉退縮への結合組織移植など。専門性が高い。", fit:"△網羅", cat:"ガムピール" }
+      ] },
+    { key:"E", short:"予防・清掃", icon:ICON.sparkle,
+      title:"予防・メンテナンス・クリーニング",
+      desc:"リピート性が高く、継続接点・入口商材になる領域です。",
+      tx:[
+        { name:"クリーニング／PMTC", range:"自費 約5千〜1.5万円", note:"着色・歯石オフ。保険適用の場合あり。", fit:"○入口", cat:"クリーニング" },
+        { name:"エアフロー（パウダー）", range:"医院により異なる", note:"微粒子で着色を効率除去。", fit:"○", cat:"クリーニング" },
+        { name:"フッ素塗布・シーラント", range:"保険適用が中心", note:"むし歯予防。子ども軸のSEO枠。", fit:"△", cat:"クリーニング" },
+        { name:"定期検診・歯科ドック", range:"医院により異なる", note:"かかりつけ化・LTV向上の接点。", fit:"○", cat:"クリーニング" }
+      ] },
+    { key:"F", short:"痛み・トラブル", icon:ICON.alert,
+      title:"痛み・トラブル（一般歯科・口腔外科）",
+      desc:"高検索ボリュームの保険入口。SEO・新規集患の起点になる領域です。",
+      tx:[
+        { name:"むし歯治療", range:"保険 約1千〜1万円（3割）", note:"CR・インレー・クラウン等。かかりつけ化の主力。", fit:"△入口", cat:"一般" },
+        { name:"精密根管治療（自費）", range:"約5万〜15万円", note:"マイクロスコープ・ラバーダム使用。", fit:"○", cat:"一般" },
+        { name:"歯周病治療", range:"保険が中心", note:"スケーリング〜歯周組織再生療法。", fit:"△", cat:"一般" },
+        { name:"親知らず抜歯", range:"保険 約800〜5千円（＋CT）", note:"検索ボリュームが非常に大きい。", fit:"○入口", cat:"親知らず" },
+        { name:"口臭外来", range:"自費の外来あり", note:"悩みが強く検索される。差別化テーマ。", fit:"○", cat:"一般" }
+      ] },
+    { key:"G", short:"装具・ガード", icon:ICON.shield,
+      title:"マウスピース・装具（ナイトガード等）",
+      desc:"歯ぎしり・スポーツ用。若年層・競技層への訴求枠です。",
+      tx:[
+        { name:"ナイトガード（歯ぎしり）", range:"保険 約5千円／自費 1万円弱", note:"食いしばり・顎関節の保護。", fit:"△接点", cat:"装具" },
+        { name:"スポーツマウスガード", range:"約5千〜5万円", note:"競技・部活層に訴求。カラー対応など。", fit:"○", cat:"装具" }
+      ] },
+    { key:"H", short:"子どもの歯", icon:ICON.child,
+      title:"子どもの歯（小児歯科）",
+      desc:"保護者の比較検討が活発。独立した導線を推奨する領域です。",
+      tx:[
+        { name:"小児むし歯治療", range:"保険が中心", note:"乳歯のケア。", fit:"○", cat:"小児" },
+        { name:"フッ素・シーラント", range:"保険適用が中心", note:"むし歯予防。", fit:"△", cat:"小児" },
+        { name:"小児矯正", range:"約10万〜50万円", note:"顎の成長誘導（→歯並び）。", fit:"○", cat:"矯正" },
+        { name:"口腔筋機能療法（MFT）", range:"医院により異なる", note:"口腔機能の発達支援。", fit:"△", cat:"小児" }
+      ] },
+    { key:"I", short:"訪問・その他", icon:ICON.home,
+      title:"通院困難・その他（訪問歯科 ほか）",
+      desc:"網羅性・地域連携枠。SEO総取りに効く領域です。",
+      tx:[
+        { name:"訪問歯科診療", range:"保険が中心＋自費補綴", note:"在宅・施設への訪問。", fit:"△網羅", cat:"訪問" },
+        { name:"全身管理（静脈内鎮静・笑気）", range:"約8万円〜（鎮静）", note:"インプラント・親知らずの付随。", fit:"△", cat:"一般" }
+      ] },
+  ];
+  function axisByKey(k){ for (var i=0;i<TAXONOMY.length;i++) if (TAXONOMY[i].key===k) return TAXONOMY[i]; }
 
   /* ============ 状態 ============ */
   var saved = loadSaved();
@@ -254,10 +346,10 @@
   function pick(ids){ return ids.map(menuById).filter(Boolean); }
 
   function renderHome(){
-    // 興味のあるカテゴリ（丸アイコン）
-    fill("#homeCats", CATS.map(function(c){
-      var b = el('<button class="catcircle"><span class="ring">'+c.icon+(c.heart?'<span class="heart">'+heartSVG()+'</span>':'')+'</span><small>'+c.key+'</small></button>');
-      b.addEventListener("click", function(){ openResultsByCat(c.key); });
+    // 悩み・目的から探す（9系統タクソノミーの丸アイコン）
+    fill("#homeCats", TAXONOMY.map(function(a){
+      var b = el('<button class="catcircle"><span class="ring">'+a.icon+'</span><small>'+a.short+'</small></button>');
+      b.addEventListener("click", function(){ openAxis(a.key); });
       return b;
     }));
     // おすすめ下のサブチップ
@@ -313,9 +405,9 @@
       b.addEventListener("click", function(){ openResultsByCat(k); });
       return b;
     }));
-    fill("#partsGrid", CATS.map(function(c){
-      var b = el('<button class="part"><span class="ring">'+c.icon+'</span><small>'+c.key+'</small></button>');
-      b.addEventListener("click", function(){ openResultsByCat(c.key); });
+    fill("#partsGrid", TAXONOMY.map(function(a){
+      var b = el('<button class="part"><span class="ring">'+a.icon+'</span><small>'+a.short+'</small></button>');
+      b.addEventListener("click", function(){ openAxis(a.key); });
       return b;
     }));
     updateCondCount();
@@ -339,6 +431,25 @@
   /* ============ 結果オーバーレイ ============ */
   function openResultsByCat(cat){
     openResults(cat, menus.filter(function(m){ return m.cat===cat; }), cases.filter(function(c){ return c.cat===cat; }));
+  }
+
+  /* ============ 悩み軸ドリルダウン ============ */
+  function openAxis(key){
+    var ax = axisByKey(key); if(!ax) return;
+    var rows = ax.tx.map(function(t){
+      return '<button class="tx-row" data-tcat="'+t.cat+'" data-tname="'+t.name+'">'+
+        '<div class="tx-row__main">'+
+          '<div class="tx-row__name">'+t.name+(t.fit?' <span class="tx-fit">'+t.fit+'</span>':'')+'</div>'+
+          '<div class="tx-row__range">'+t.range+'</div>'+
+          '<div class="tx-row__note">'+t.note+'</div>'+
+        '</div><span class="chev">›</span></button>';
+    }).join("");
+    var html =
+      '<div class="tax-head"><div class="detail-treat">'+ax.title+'</div>'+
+        '<p class="detail-note" style="margin-top:6px;">'+ax.desc+'</p></div>'+
+      '<div class="tax-list">'+rows+'</div>'+
+      '<p class="detail-note" style="padding:16px;">費用は目安です（自費は総額の一般的レンジ／保険は3割負担のサンプル）。保険適用の有無・実際の費用は医院により異なります。各施術は自由診療の場合があり、効果・期間には個人差があります。主なリスク・副作用は各メニュー・症例ページに記載します。</p>';
+    showOverlay(ax.title, html);
   }
   function openResults(title, ms, cs){
     var html = '<div class="detail-body">';
@@ -559,6 +670,7 @@
     var save=t.closest("[data-save]"); if(save){ e.stopPropagation(); toggleSaved(save.getAttribute("data-save")); return; }
     var menuEl=t.closest("[data-menu]"); if(menuEl){ openMenu(menuEl.getAttribute("data-menu")); return; }
     var caseEl=t.closest("[data-case]"); if(caseEl){ openCase(caseEl.getAttribute("data-case")); return; }
+    var txEl=t.closest("[data-tcat]"); if(txEl){ var tc=txEl.getAttribute("data-tcat"), tn=txEl.getAttribute("data-tname"); openResults(tn, menus.filter(function(m){return m.cat===tc;}), cases.filter(function(c){return c.cat===tc;})); return; }
     var clinicEl=t.closest("[data-clinic]"); if(clinicEl){ openClinic(clinicEl.getAttribute("data-clinic")); return; }
     var sheetEl=t.closest("[data-sheet]"); if(sheetEl){ openSheet(sheetEl.getAttribute("data-sheet")); return; }
     var resEl=t.closest("[data-results]"); if(resEl){ var k=resEl.getAttribute("data-results"); if(k==="menu") openResults("特別メニュー", menus, []); else if(k==="case") openResults("症例", [], cases); else toast("口コミ一覧はモックです"); return; }
