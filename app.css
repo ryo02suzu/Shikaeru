@@ -85,38 +85,38 @@ h1, h2, h3, h4 { margin: 0; font-weight: 700; line-height: 1.4; }
 
 /* ---- ポイントバー ---- */
 .pointsbar {
-  display: flex; align-items: center; gap: 8px; margin: 12px 14px 0;
-  border: 1px solid var(--line-2); border-radius: 999px; padding: 11px 16px; font-size: 0.86rem;
+  display: flex; align-items: center; gap: 10px; margin: 16px 16px 0;
+  border: 1px solid var(--line-2); border-radius: 14px; padding: 16px 18px; font-size: 0.95rem;
 }
-.pointsbar .p { width: 22px; height: 22px; border-radius: 50%; background: var(--teal-tint); color: var(--teal-deep); display: grid; place-items: center; font-weight: 700; font-size: 0.72rem; }
+.pointsbar .p { width: 24px; height: 24px; border-radius: 50%; background: var(--teal-tint); color: var(--teal-deep); display: grid; place-items: center; font-weight: 700; font-size: 0.76rem; }
 .pointsbar b { font-weight: 700; }
 .pointsbar .chev { margin-left: auto; color: var(--ink-faint); }
 
 /* ---- 検索ブロック ---- */
-.searchblock { margin: 12px 14px 0; border: 1px solid var(--line-2); border-radius: var(--r); padding: 16px; }
-.searchblock h2 { font-size: 1.02rem; margin-bottom: 12px; }
+.searchblock { margin: 16px 16px 0; border: 1px solid var(--line-2); border-radius: 16px; padding: 20px; }
+.searchblock h2 { font-size: 1.12rem; margin-bottom: 16px; }
 .area-pill, .sb-input {
-  display: flex; align-items: center; gap: 8px; width: 100%;
-  border: 1px solid var(--line-2); border-radius: 10px; padding: 12px 14px; font-size: 0.9rem; background: #fff;
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  border: 1px solid var(--line-2); border-radius: 12px; padding: 15px 16px; font-size: 0.96rem; background: #fff;
 }
-.area-pill { margin-bottom: 10px; color: var(--ink); }
+.area-pill { margin-bottom: 12px; color: var(--ink); }
 .area-pill svg { width: 18px; height: 18px; color: var(--teal); }
 .area-pill .chev { margin-left: auto; color: var(--ink-faint); }
 .sb-input { color: var(--ink-faint); background: var(--bg-soft); }
 .sb-input svg { width: 18px; height: 18px; color: var(--teal); }
 
 /* ---- 興味のあるカテゴリ（丸アイコン） ---- */
-.catcircles { display: flex; gap: 6px; overflow-x: auto; padding: 16px 14px 6px; scrollbar-width: none; }
+.catcircles { display: flex; gap: 12px; overflow-x: auto; padding: 20px 16px 10px; scrollbar-width: none; }
 .catcircles::-webkit-scrollbar { display: none; }
-.catcircle { flex: none; width: 68px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.catcircle { flex: none; width: 70px; display: flex; flex-direction: column; align-items: center; gap: 9px; }
 .catcircle .ring {
-  width: 60px; height: 60px; border-radius: 50%; background: var(--teal-tint);
+  width: 66px; height: 66px; border-radius: 50%; background: var(--teal-tint);
   display: grid; place-items: center; color: var(--teal-deep); position: relative;
 }
-.catcircle .ring svg { width: 30px; height: 30px; }
+.catcircle .ring svg { width: 34px; height: 34px; }
 .catcircle .heart { position: absolute; top: -2px; right: 2px; width: 18px; height: 18px; border-radius: 50%; background: var(--pink); color: #fff; display: grid; place-items: center; }
 .catcircle .heart svg { width: 10px; height: 10px; fill: #fff; stroke: #fff; }
-.catcircle small { font-size: 0.7rem; color: var(--ink); text-align: center; line-height: 1.25; }
+.catcircle small { font-size: 0.74rem; color: var(--ink); white-space: nowrap; }
 
 /* ---- バナー ---- */
 .banners { display: flex; gap: 10px; overflow-x: auto; padding: 14px; scrollbar-width: none; }
@@ -134,8 +134,8 @@ h1, h2, h3, h4 { margin: 0; font-weight: 700; line-height: 1.4; }
 .banner--c { background: linear-gradient(135deg, #6db3f2, #4a73e8); }
 
 /* ---- セクション見出し ---- */
-.section-head { display: flex; align-items: center; justify-content: space-between; padding: 20px 14px 10px; }
-.section-head h2 { font-size: 1.08rem; letter-spacing: 0.02em; }
+.section-head { display: flex; align-items: center; justify-content: space-between; padding: 24px 16px 12px; }
+.section-head h2 { font-size: 1.12rem; letter-spacing: 0.02em; }
 .section-head .more { font-size: 1.1rem; color: var(--ink-faint); }
 .sub-note { padding: 0 14px 4px; font-size: 0.68rem; color: var(--ink-faint); }
 

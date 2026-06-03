@@ -16,7 +16,10 @@
     alert: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h16.9a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>',
     shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
     home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>',
-    child: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/></svg>'
+    child: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2"/></svg>',
+    implant: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4c-1.5 0-2.5 1.2-2.5 2.7C6.5 8 7.2 8.8 8 9h8c.8-.2 1.5-1 1.5-2.3C17.5 5.2 16.5 4 15 4c-1.2 0-1.8.7-3 .7S10.2 4 9 4z"/><path d="M12 9.5v3M10 12.5h4M10.5 15.5h3M11 18.5h2"/></svg>',
+    brush: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="8" rx="2"/><path d="M9 5.5h6M9 7.5h6"/><path d="M12 10.5V18a3.5 3.5 0 0 0 3.5 3.5"/></svg>',
+    guard: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5h16v3a8 7 0 0 1-16 0v-3z"/><path d="M9 8.5v2.5M15 8.5v2.5"/></svg>'
   };
 
   /* ============ サンプルデータ ============ */
@@ -140,7 +143,7 @@
         { name:"小児矯正（Ⅰ期・Ⅱ期）", range:"約10万〜50万円", note:"顎の成長誘導。保護者の比較が活発。", fit:"○", cat:"矯正" },
         { name:"保定・付随処置", range:"装置により異なる", note:"アンカースクリュー・IPR・リテーナーなど。", fit:"△解説", cat:"矯正" }
       ] },
-    { key:"C", short:"欠損を補う", icon:ICON.tooth,
+    { key:"C", short:"欠損を補う", icon:ICON.implant,
       title:"歯を補いたい（欠損補綴）",
       desc:"超高単価・高LTV。1件あたりの送客価値が大きい領域です。",
       tx:[
@@ -149,7 +152,7 @@
         { name:"自費の入れ歯", range:"約8万〜80万円", note:"ノンクラスプ・金属床・コーヌスなど。", fit:"△網羅", cat:"入れ歯" },
         { name:"ブリッジ（セラミック）", range:"医院により異なる", note:"審美（セラミック）と接続可能。", fit:"○", cat:"セラミック" }
       ] },
-    { key:"D", short:"歯ぐき・口元", icon:ICON.smile,
+    { key:"D", short:"歯ぐき", icon:ICON.smile,
       title:"歯ぐき・口元の見た目（ガム・口元審美）",
       desc:"口元審美。低単価の入口〜美容医療層と親和性が高い領域です。",
       tx:[
@@ -158,7 +161,7 @@
         { name:"歯肉整形・ライン形成", range:"1歯〜・医院により異なる", note:"左右非対称の歯ぐきラインを修正。", fit:"◎", cat:"ガムピール" },
         { name:"歯ぐきの再生・移植", range:"医院により異なる", note:"歯肉退縮への結合組織移植など。専門性が高い。", fit:"△網羅", cat:"ガムピール" }
       ] },
-    { key:"E", short:"予防・清掃", icon:ICON.sparkle,
+    { key:"E", short:"予防・清掃", icon:ICON.brush,
       title:"予防・メンテナンス・クリーニング",
       desc:"リピート性が高く、継続接点・入口商材になる領域です。",
       tx:[
@@ -167,7 +170,7 @@
         { name:"フッ素塗布・シーラント", range:"保険適用が中心", note:"むし歯予防。子ども軸のSEO枠。", fit:"△", cat:"クリーニング" },
         { name:"定期検診・歯科ドック", range:"医院により異なる", note:"かかりつけ化・LTV向上の接点。", fit:"○", cat:"クリーニング" }
       ] },
-    { key:"F", short:"痛み・トラブル", icon:ICON.alert,
+    { key:"F", short:"痛み", icon:ICON.alert,
       title:"痛み・トラブル（一般歯科・口腔外科）",
       desc:"高検索ボリュームの保険入口。SEO・新規集患の起点になる領域です。",
       tx:[
@@ -177,14 +180,14 @@
         { name:"親知らず抜歯", range:"保険 約800〜5千円（＋CT）", note:"検索ボリュームが非常に大きい。", fit:"○入口", cat:"親知らず" },
         { name:"口臭外来", range:"自費の外来あり", note:"悩みが強く検索される。差別化テーマ。", fit:"○", cat:"一般" }
       ] },
-    { key:"G", short:"装具・ガード", icon:ICON.shield,
+    { key:"G", short:"ガード", icon:ICON.guard,
       title:"マウスピース・装具（ナイトガード等）",
       desc:"歯ぎしり・スポーツ用。若年層・競技層への訴求枠です。",
       tx:[
         { name:"ナイトガード（歯ぎしり）", range:"保険 約5千円／自費 1万円弱", note:"食いしばり・顎関節の保護。", fit:"△接点", cat:"装具" },
         { name:"スポーツマウスガード", range:"約5千〜5万円", note:"競技・部活層に訴求。カラー対応など。", fit:"○", cat:"装具" }
       ] },
-    { key:"H", short:"子どもの歯", icon:ICON.child,
+    { key:"H", short:"こども", icon:ICON.child,
       title:"子どもの歯（小児歯科）",
       desc:"保護者の比較検討が活発。独立した導線を推奨する領域です。",
       tx:[
@@ -193,7 +196,7 @@
         { name:"小児矯正", range:"約10万〜50万円", note:"顎の成長誘導（→歯並び）。", fit:"○", cat:"矯正" },
         { name:"口腔筋機能療法（MFT）", range:"医院により異なる", note:"口腔機能の発達支援。", fit:"△", cat:"小児" }
       ] },
-    { key:"I", short:"訪問・その他", icon:ICON.home,
+    { key:"I", short:"その他", icon:ICON.home,
       title:"通院困難・その他（訪問歯科 ほか）",
       desc:"網羅性・地域連携枠。SEO総取りに効く領域です。",
       tx:[
